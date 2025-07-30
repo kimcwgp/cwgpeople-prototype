@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CWGlobalPeople - Financial, Software & Customer Service</title>
+<style>
+  /* Reset & base */
+  * {
+    box-sizing: border-box;
+  }
+  body, html {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: #f7f7f7;
+    color: #2a2a2a;
+    scroll-behavior: smooth;
+  }
+  a {
+    color: #b8860b;
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  a:hover {
+    color: #9a6d04;
+  }
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  h1,h2,h3,h4,h5,h6 {
+    margin: 0;
+  }
+  h1 { font-size: 2.5rem; line-height: 1.1; font-weight: 700;}
+  h2 { font-size: 2rem; font-weight: 700; margin-bottom: 0.5rem;}
+  h3 { font-size: 1.6rem; font-weight: 700; }
+  h4 { font-size: 1.2rem; font-weight: 700; }
+  p {
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+    font-size: 1rem;
+    color: #444;
+  }
+
+  /* Utility colors */
+  .gold {
+    color: #b8860b;
+  }
+  .gold-bg {
+    background-color: #b8860b;
+    color: white;
+  }
+
+  /* Container */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+  }
+
+  /* Header & Nav */
+  header {
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+  }
+  .logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #b8860b;
+    letter-spacing: 1.1px;
+  }
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+  .nav-links a {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .btn-primary {
+    background-color: #b8860b;
+    border: none;
+    padding: 0.5rem 1.25rem;
+    font-weight: 600;
+    color: white;
+    border-radius: 4px;
+    cursor: pointer;
+    white-space: nowrap;
+    box-shadow: 0 2px 7px rgb(184 134 11 / 0.4);
+  }
+  .btn-primary:hover {
+    background-color: #9a6d04;
+    box-shadow: 0 3px 10px rgb(154 109 4 / 0.6);
+  }
+
+  /* Hero section */
+  .hero {
+    position: relative;
+    color: white;
+    background-color: #333;
+    overflow: hidden;
+    min-height: 460px;
+    display: flex;
+    align-items: center;
+  }
+  .hero::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(184,134,11,0.85) 35%, rgba(0,0,0,0.75) 100%);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 600px;
+    padding: 2rem;
+  }
+  .hero h1 {
+    font-size: 2.8rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
+  }
+  .hero p {
+    font-size: 1.125rem;
+    font-weight: 400;
+    color: #f0e6b6;
+    margin-bottom: 1.5rem;
+  }
+  .hero-image {
+    flex: 1;
+    position: relative;
+    min-height: 460px;
+  }
+  .hero-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Services Section */
+  #services {
+    background-color: white;
+    padding: 4rem 0 3rem;
+  }
+  #services .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #services .section-header span {
+    font-weight: 700;
+    color: #b8860b;
+    font-size: 1.125rem;
+  }
+  #services .section-header h2 {
+    font-size: 2rem;
+    margin-top: 0.25rem;
+  }
+  #services .service-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 2rem;
+  }
+  .service-card {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgb(0 0 0 / 0.07);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .service-card img {
+    height: 160px;
+    object-fit: cover;
+    border-bottom: 4px solid #b8860b;
+  }
+  .service-content {
+    padding: 1.25rem 1rem 1.5rem;
+    flex-grow: 1;
+  }
+  .service-content h4 {
+    margin-bottom: 0.75rem;
+    font-weight: 700;
+    color: #b8860b;
+  }
+  .service-content p {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.3;
+  }
+
+  /* Industry Section */
+  #industry {
+    background-color: #f7f7f7;
+    padding: 4rem 0 3rem;
+  }
+  #industry .section-header {
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+  #industry .section-header span {
+    font-weight: 700;
+    color: #b8860b;
+    font-size: 1.125rem;
+  }
+  #industry .section-header h2 {
+    font-size: 2rem;
+    margin-top: 0.25rem;
+  }
+  #industry .industry-cards {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .industry-card {
+    background: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 0.08);
+    overflow: hidden;
+    max-width: 320px;
+    flex: 1 1 300px;
+    cursor: default;
+    transition: transform 0.3s ease;
+  }
+  .industry-card:hover {
+    transform: translateY(-8px);
+  }
+  .industry-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 4px solid #b8860b;
+  }
+  .industry-card .content {
+    padding: 1rem 1rem 1.25rem;
+    text-align: center;
+  }
+  .industry-card .content h4 {
+    margin-top: 0.75rem;
+    font-weight: 700;
+    color: #2a2a2a;
+    text-transform: capitalize;
+    letter-spacing: 0.03em;
+  }
+
+  /* Who we are section */
+  #about {
+    background: white;
+    padding: 4rem 0 3rem;
+  }
+  #about .container-flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  #about .left, #about .right {
+    flex: 1 1 320px;
+    max-width: 540px;
+  }
+  #about h3 {
+    font-weight: 700;
+    color: #b8860b;
+    margin-bottom: 0.5rem;
+  }
+  #about h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+  }
+  #about p {
+    margin-bottom: 1.5rem;
+    color: #555;
+    font-size: 1rem;
+  }
+  #about .stat-box {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  #about .stat-box .stat-num {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #b8860b;
+    min-width: 60px;
+    text-align: center;
+  }
+  #about .stat-box .stat-desc {
+    font-size: 1rem;
+    color: #444;
+  }
+  #about img.profile {
+    border-radius: 8px;
+    max-width: 320px;
+    object-fit: cover;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.12);
+  }
+
+  /* Work With Us section */
+  #work {
+    background-color: #322f2a;
+    color: white;
+    padding: 4rem 2rem;
+  }
+  #work h2 {
+    color: #f1c40f;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  #work-content {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: center;
+  }
+  #work-text {
+    flex: 1 1 300px;
+    max-width: 400px;
+  }
+  #work-text p {
+    margin-bottom: 1.2rem;
+    line-height: 1.4;
+  }
+  #work-text strong {
+    color: #f1c40f;
+  }
+  #work-image {
+    flex: 1 1 300px;
+    max-width: 440px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgb(0 0 0 / 0.25);
+  }
+  #work-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  /* Work bullet points */
+  #work-text ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  #work-text li {
+    margin-bottom: 0.9rem;
+    position: relative;
+    padding-left: 18px;
+    font-weight: 600;
+    color: #f1c40f;
+  }
+  #work-text li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: #f1c40f;
+    font-size: 1.3rem;
+    top: 0;
+  }
+
+  /* Updates Section */
+  #updates {
+    background: white;
+    padding: 4rem 1rem 3rem;
+  }
+  #updates .container {
+    max-width: 1140px;
+  }
+  #updates h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+  #updates .updates-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px,1fr));
+    gap: 1.8rem;
+    margin-bottom: 2rem;
+  }
+  .update-card {
+    background: #fefefe;
+    border-radius: 6px;
+    box-shadow: 0 2px 10px rgb(0 0 0 / 0.07);
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.3s ease;
+  }
+  .update-card:hover {
+    transform: translateY(-6px);
+  }
+  .update-card img {
+    width: 100%;
+    height: 140px;
+    object-fit: cover;
+    border-bottom: 4px solid #b8860b;
+  }
+  .update-content {
+    padding: 1rem 1rem 1.25rem;
+    flex-grow: 1;
+  }
+  .update-date {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #b8860b;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+  .update-title {
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+    color: #2a2a2a;
+  }
+  .update-desc {
+    color: #555;
+    font-size: 0.95rem;
+  }
+  #updates .btn-secondary {
+    display: block;
+    margin: 0 auto;
+    padding: 0.6rem 2.2rem;
+    background-color: #b8860b;
+    border: none;
+    color: white;
+    font-weight: 700;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1rem;
+    box-shadow: 0 3px 12px rgb(184 134 11 / 0.4);
+    transition: background-color 0.3s ease;
+  }
+  #updates .btn-secondary:hover {
+    background-color: #9a6d04;
+  }
+
+  /* Testimonials Section */
+  #testimonials {
+    background-image: url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/6310a1c8-c1e5-4df1-9ac8-cccade1fdb0a.png");
+    background-size: cover;
+    background-position: center;
+    color: white;
+    padding: 4rem 1rem 5rem;
+  }
+  #testimonials .overlay {
+    background-color: rgba(0,0,0,0.75);
+    padding: 3rem 1rem 4rem;
+    max-width: 1140px;
+    margin: 0 auto;
+    border-radius: 10px;
+  }
+  #testimonials h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 700;
+  }
+  .testimonial-slider {
+    display: flex;
+    overflow: hidden;
+    position: relative;
+  }
+  .testimonial {
+    min-width: 100%;
+    flex-shrink: 0;
+    padding: 1rem 2rem;
+    box-sizing: border-box;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .testimonial.active {
+    display: flex;
+  }
+  .testimonial p {
+    font-style: italic;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .testimonial-author img {
+    border-radius: 50%;
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  }
+  .testimonial-author-info {
+    text-align: left;
+  }
+  .testimonial-author-name {
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+  .testimonial-stars {
+    color: #f1c40f;
+    font-size: 1rem;
+    margin-top: 0.25rem;
+  }
+  /* Navigation dots */
+  .testimonial-dots {
+    margin-top: 1.5rem;
+    text-align: center;
+  }
+  .testimonial-dots button {
+    border: none;
+    background-color: #b8860b;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
+  }
+  .testimonial-dots button.active {
+    opacity: 1;
+  }
+
+  /* Contact Section */
+  #contact {
+    background: #fff8f0;
+    padding: 4rem 1rem 5rem;
+  }
+  #contact .container-flex {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
+    align-items: center;
+  }
+  #contact .contact-image {
+    flex: 1 1 320px;
+    max-width: 380px;
+    overflow: hidden;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  #contact .contact-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  #contact .contact-form {
+    flex: 1 1 320px;
+    max-width: 480px;
+    padding: 0 1rem;
+  }
+  #contact h2 {
+    margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: center;
+    color: #b8860b;
+  }
+  #contact p {
+    margin-bottom: 2rem;
+    color: #444;
+    font-size: 1rem;
+    text-align: center;
+  }
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  label {
+    font-weight: 600;
+    font-size: 0.95rem;
+    color: #555;
+  }
+  input, textarea {
+    padding: 0.6rem 0.75rem;
+    font-size: 1rem;
+    border: 1.8px solid #b8860b;
+    border-radius: 6px;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+    font-family: inherit;
+  }
+  input:focus, textarea:focus {
+    outline: none;
+    border-color: #9a6d04;
+    box-shadow: 0 0 6px rgb(154 109 4 / 0.6);
+  }
+  textarea {
+    min-height: 100px;
+  }
+  form button {
+    background-color: #b8860b;
+    border: none;
+    padding: 0.7rem 0;
+    font-weight: 700;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    box-shadow: 0 3px 12px rgb(184 134 11 / 0.4);
+    transition: background-color 0.3s ease;
+  }
+  form button:hover {
+    background-color: #9a6d04;
+  }
+
+  /* Footer */
+  footer {
+    background-color: #231f20;
+    color: #bbb;
+    padding: 3rem 1rem 2rem;
+    font-size: 0.9rem;
+  }
+  footer .footer-container {
+    max-width: 1140px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    justify-content: space-between;
+  }
+  footer .footer-brand {
+    flex: 1 1 220px;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: #b8860b;
+    letter-spacing: 1px;
+  }
+  footer .footer-links, footer .footer-contact {
+    flex: 1 1 140px;
+  }
+  footer .footer-links h4, footer .footer-contact h4 {
+    color: white;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+  }
+  footer ul {
+    list-style: none;
+    padding-left: 0;
+  }
+  footer ul li {
+    margin-bottom: 0.6rem;
+    cursor:pointer;
+  }
+  footer ul li:hover {
+    color: #b8860b;
+  }
+  footer .contact-info p {
+    margin-bottom: 0.6rem;
+  }
+  @media (max-width: 860px) {
+    header nav {
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    #about .container-flex,
+    #contact .container-flex {
+      flex-direction: column;
+      align-items: center;
+    }
+    #work-content {
+      flex-direction: column;
+      align-items: center;
+    }
+    #work-text, #work-image {
+      max-width: 100%;
+    }
+    #industry .industry-cards {
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="container">
+    <nav aria-label="Primary Navigation">
+      <a class="logo" href="#">CWGlobalPeople</a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#industry">Industry</a>
+        <a href="#about">About Us</a>
+        <a href="#work">Work With Us</a>
+        <a href="#updates">Updates</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <button class="btn-primary" aria-label="Contact Us Button">Contact Us</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero" role="banner" aria-label="Hero section with team photo and welcome message">
+  <div class="container hero-content">
+    <h1>Let us help you transform your business</h1>
+    <p>At CWGlobalPeople, we specialize in Financial, Software, and Customer Service solutions designed to elevate and optimize your business operations for sustainable growth and success.</p>
+  </div>
+  <div class="hero-image" aria-hidden="true">
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/67884261-e930-43a0-95e4-49dbe10b2008.png" alt="Diverse group of professionals wearing coordinated red shirts standing confidently outdoors with modern skyscrapers in background" onerror="this.style.display='none'" />
+  </div>
+</section>
+
+<section id="services" aria-label="Our Services">
+  <div class="container">
+    <div class="section-header">
+      <span>OUR SERVICES</span>
+      <h2>We do everything NetSuite</h2>
+    </div>
+    <div class="service-items">
+      <article class="service-card" aria-labelledby="service1-title">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/c97da0d5-3e68-47ba-bd79-49b83661e960.png" alt="Business woman consulting with clients using financial charts on laptop" onerror="this.style.display='none'" />
+        <div class="service-content">
+          <h4 id="service1-title">NetSuite Administration</h4>
+          <p>Efficient management of your NetSuite platform to ensure smooth operations and best practices in financial software administration.</p>
+        </div>
+      </article>
+      <article class="service-card" aria-labelledby="service2-title">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/147414d6-cd56-4279-97e4-14272361c568.png" alt="Team of specialists standing and discussing software implementation plans in modern office" onerror="this.style.display='none'" />
+        <div class="service-content">
+          <h4 id="service2-title">NetSuite Implementation</h4>
+          <p>Custom tailored NetSuite solutions designed and implemented by experts to fit your business needs and maximize efficiency.</p>
+        </div>
+      </article>
+      <article class="service-card" aria-labelledby="service3-title">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fa2de837-6bf3-4636-882e-11aaa2dc05e3.png" alt="Financial advisor discussing charts and future strategies with colleagues using digital tools" onerror="this.style.display='none'" />
+        <div class="service-content">
+          <h4 id="service3-title">NetSuite Advisory</h4>
+          <p>Insightful advisory services for continual improvement and strategic decisions leveraging your NetSuite data and technology.</p>
+        </div>
+      </article>
+      <article class="service-card" aria-labelledby="service4-title">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/38554407-6fb2-496f-8fdb-21625b1ec800.png" alt="Customer service team collaborating attentively in open office environment" onerror="this.style.display='none'" />
+        <div class="service-content">
+          <h4 id="service4-title">NetSuite Training and Education</h4>
+          <p>Comprehensive training programs designed to empower your staff and ensure you derive maximum benefit from your NetSuite investment.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="industry" aria-label="Industry expertise">
+  <div class="container">
+    <div class="section-header">
+      <span>OUR INDUSTRY EXPERTISE</span>
+      <h2>Tailor solutions that best fit you – <span class="gold">what we do.</span></h2>
+    </div>
+    <div class="industry-cards" role="list">
+      <div class="industry-card" role="listitem" tabindex="0" aria-label="Manufacturing industry image and caption">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/707eb15a-5a54-4b09-9575-b7423b65492b.png" alt="Interior of a modern manufacturing factory with automated robots and high-tech machinery" />
+        <div class="content"><h4>Manufacturing</h4></div>
+      </div>
+      <div class="industry-card" role="listitem" tabindex="0" aria-label="Non-Profit team volunteering and smiling">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/61b3f94c-61be-4f95-8732-aaed4c71b18c.png" alt="Group of smiling diverse volunteers in outdoor non-profit community event" />
+        <div class="content"><h4>Non-Profit</h4></div>
+      </div>
+      <div class="industry-card" role="listitem" tabindex="0" aria-label="Modern retail store interior with customer service station">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/87092087-3727-4fa7-b8e0-d91f856ca319.png" alt="Stylish modern retail store with various products and customer service desk" />
+        <div class="content"><h4>Retail</h4></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about" aria-label="About CWGlobalPeople">
+  <div class="container container-flex">
+    <div class="left">
+      <h3>Your <em>one-stop-shop</em> for all things <span class="gold">NetSuite</span></h3>
+      <p>CWGlobalPeople delivers end-to-end solutions for businesses seeking expert support in Financial, Software, and Customer Service sectors. Our team combines deep industry knowledge with technological expertise to create impactful results for our clients worldwide.</p>
+      <div class="stat-box" aria-label="Years of experience statistic">
+        <div class="stat-num" aria-live="polite" aria-atomic="true">10+</div>
+        <div class="stat-desc">years of experience</div>
+      </div>
+      <p>Whether implementing new ERP foundations or optimizing customer relations, we tailor services that truly fit your unique business challenges.</p>
+    </div>
+    <div class="right">
+      <img class="profile" src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e9269f4d-22a4-4e2e-aa11-1815aabe0555.png" alt="Professional portrait of a smiling female leader from CWGlobalPeople standing confidently" />
+      <h3>What makes us <span class="gold">different?</span></h3>
+      <p>We prioritize personalized service wrapped in expert insights, fostering not just client satisfaction but enduring partnerships. Our collaborative approach, transparent communication, and commitment to ongoing innovation set us apart in the industry.</p>
+      <ul>
+        <li>Innovative financial technology integration</li>
+        <li>Robust software customization and support</li>
+        <li>Expert-driven customer service excellence</li>
+        <li>Strategic business consulting & advisory</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="work" aria-label="Work with CWGlobalPeople">
+  <h2>Be part of our growing <span class="gold">family</span></h2>
+  <div id="work-content">
+    <div id="work-text">
+      <p><strong>Empathy:</strong> We put people first, understanding client needs deeply.</p>
+      <p><strong>Integrity:</strong> Transparent and honest interaction is our foundation.</p>
+      <p><strong>Collaboration:</strong> Great outcomes are a product of strong teamwork.</p>
+      <p><strong>Excellence:</strong> We consistently deliver top-tier service and solutions.</p>
+      <p><strong>Innovation:</strong> Always evolving to bring you cutting-edge technologies.</p>
+      <p><strong>Resilience:</strong> We thrive through challenges with perseverance and skill.</p>
+      <p><strong>Respect:</strong> We embrace diversity and treat everyone with dignity.</p>
+    </div>
+    <div id="work-image" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/54e6f5ab-9e6f-426e-aec1-d1c8b60f7c79.png" alt="Diverse team of professionals collaborating enthusiastically around a laptop in modern office space" />
+    </div>
+  </div>
+</section>
+
+<section id="updates" aria-label="Recent updates and news">
+  <div class="container">
+    <h2>Check out what <span class="gold">we've been up to!</span></h2>
+    <div class="updates-list">
+      <article class="update-card" aria-labelledby="update1-title">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/44eeeb27-ba04-4f45-a06b-e221cb0b55d6.png" alt="CWGlobalPeople booth and networking at an international business conference" />
+        <div class="update-content">
+          <div class="update-date">October 2023</div>
+          <h3 id="update1-title" class="update-title">Global Financial Conference Highlights</h3>
+          <p class="update-desc">Our team connected with industry leaders to deepen financial software insights and explore future innovations.</p>
+        </div>
+      </article>
+      <article class="update-card" aria-labelledby="update2-title">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d6012d4b-a044-4823-880e-3e48c4b23c96.png" alt="CWGlobalPeople receiving a prestigious business excellence award at ceremony" />
+        <div class="update-content">
+          <div class="update-date">September 2023</div>
+          <h3 id="update2-title" class="update-title">Awarded Best Customer Service Partner</h3>
+          <p class="update-desc">Recognized for exemplary support and training services that enhance client satisfaction globally.</p>
+        </div>
+      </article>
+      <article class="update-card" aria-labelledby="update3-title">
+        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/faa8f6fe-bea4-4104-ad85-80f841c138b9.png" alt="CWGlobalPeople staff enjoying a team-building outdoor event with smiles and group activities" />
+        <div class="update-content">
+          <div class="update-date">August 2023</div>
+          <h3 id="update3-title" class="update-title">Strengthening Our Team Culture</h3>
+          <p class="update-desc">Our annual team-building event helped foster collaboration, creativity, and camaraderie among staff.</p>
+        </div>
+      </article>
+    </div>
+    <button class="btn-secondary" aria-label="View all updates">View all updates</button>
+  </div>
+</section>
+
+<section id="testimonials" aria-label="Client testimonials">
+  <div class="overlay">
+    <h2>What our Clients are saying about us</h2>
+    <div class="testimonial-slider" role="region" aria-live="polite" aria-atomic="true" aria-relevant="additions removals" aria-label="Testimonials carousel">
+      <div class="testimonial active" tabindex="0" id="testimonial1">
+        <p>“CWGlobalPeople transformed our ERP integration, streamlining our operations and boosting our financial accuracy remarkably.”</p>
+        <div class="testimonial-author">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/ce3cc9b4-8e9f-48d8-b014-0dd5fb410b27.png" alt="Photo of David Martin, client providing testimonial" />
+          <div class="testimonial-author-info">
+            <div class="testimonial-author-name">David Martin</div>
+            <div class="testimonial-stars" aria-label="Five star rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial" tabindex="0" id="testimonial2">
+        <p>“Their understanding of customer needs and software training is unmatched. Our team feels empowered and supported every step.”</p>
+        <div class="testimonial-author">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/7ca4e3ba-4efe-4624-a883-61e92707e291.png" alt="Photo of Jamie Klein, client providing testimonial" />
+          <div class="testimonial-author-info">
+            <div class="testimonial-author-name">Jamie Klein</div>
+            <div class="testimonial-stars" aria-label="Five star rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial" tabindex="0" id="testimonial3">
+        <p>“The advisory services from CWGlobalPeople helped recalibrate our business strategy, leading to a significant revenue increase.”</p>
+        <div class="testimonial-author">
+          <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/08c6a0ee-0548-49b4-88e9-eb6502041dbc.png" alt="Photo of Vince Mandal, client providing testimonial" />
+          <div class="testimonial-author-info">
+            <div class="testimonial-author-name">Vince Mandal</div>
+            <div class="testimonial-stars" aria-label="Five star rating">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-dots" role="tablist" aria-label="Select testimonial">
+      <button aria-selected="true" role="tab" aria-controls="testimonial1" tabindex="0" class="active" data-slide="0"></button>
+      <button aria-selected="false" role="tab" aria-controls="testimonial2" tabindex="-1" data-slide="1"></button>
+      <button aria-selected="false" role="tab" aria-controls="testimonial3" tabindex="-1" data-slide="2"></button>
+    </div>
+  </div>
+</section>
+
+<section id="contact" aria-label="Contact CWGlobalPeople for inquiries">
+  <div class="container container-flex">
+    <div class="contact-image" aria-hidden="true">
+      <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/66b6b569-4b6c-4d34-9c90-dec79fc34ed6.png" alt="CWGlobalPeople office staff smiling and welcoming, group portrait in professional setting" />
+    </div>
+    <div class="contact-form">
+      <h2>We will continuously help your business move forward and adapt to ever-changing needs</h2>
+      <form action="#" method="post" aria-label="Contact form">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" placeholder="Your full name" required aria-required="true" />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" placeholder="your.email@example.com" required aria-required="true" />
+        <label for="message">Message</label>
+        <textarea id="message" name="message" placeholder="How can we help?" required aria-required="true"></textarea>
+        <button type="submit" aria-label="Submit Contact Form">Send</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer role="contentinfo" aria-label="Site footer with company info and links">
+  <div class="footer-container container">
+    <div class="footer-brand" aria-label="Company name and logo CWGlobalPeople">
+      CWGlobalPeople
+    </div>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <h4>Our Services</h4>
+      <ul>
+        <li><a href="#services">Financial</a></li>
+        <li><a href="#services">Software</a></li>
+        <li><a href="#services">Customer Service</a></li>
+      </ul>
+    </nav>
+    <div class="footer-contact">
+      <h4>Contact</h4>
+      <address class="contact-info">
+        <p>Email: info@cwglobalpeople.com</p>
+        <p>Phone: +1 555-0199-123</p>
+        <p>Address: 123 Business Rd, Suite 400, Business City, USA</p>
+      </address>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Testimonial Slider Logic
+  const testimonials = document.querySelectorAll('.testimonial');
+  const dots = document.querySelectorAll('.testimonial-dots button');
+
+  let currentIndex = 0;
+
+  function showTestimonial(index) {
+    testimonials.forEach((t, i) => {
+      t.classList.toggle('active', i === index);
+      dots[i].classList.toggle('active', i === index);
+      dots[i].setAttribute('aria-selected', i === index ? 'true' : 'false');
+      dots[i].tabIndex = i === index ? 0 : -1;
+    });
+    currentIndex = index;
+  }
+
+  dots.forEach((dot, index) => {
+    dot.addEventListener('click', () => showTestimonial(index));
+    dot.addEventListener('keydown', (e) => {
+      if(e.key === 'ArrowRight') {
+        e.preventDefault();
+        let nextIndex = (index + 1) % dots.length;
+        dots[nextIndex].focus();
+        showTestimonial(nextIndex);
+      } else if(e.key === 'ArrowLeft') {
+        e.preventDefault();
+        let prevIndex = (index - 1 + dots.length) % dots.length;
+        dots[prevIndex].focus();
+        showTestimonial(prevIndex);
+      }
+    });
+  });
+
+  // Auto rotate every 8 seconds
+  setInterval(() => {
+    let next = (currentIndex + 1) % testimonials.length;
+    showTestimonial(next);
+  }, 8000);
+
+</script>
+</body>
+</html>
+
