@@ -212,7 +212,7 @@
     align-items: center;
     }
     .contact-info {
-        display: flex;
+        display: flex!important;
         align-items: center;
     }
     .email, .phone, .locations {
@@ -1016,7 +1016,7 @@
     font-style: normal;
   }
   address.contact-info {
-    display: inline-block;
+    display: inline-block!important;
   }
   h4.footer-title::after{
     content: "";
