@@ -12,29 +12,138 @@
 <header>
   <div class="container">
     <nav aria-label="Primary Navigation">
-      <a class="logo" href="/cwgpeople-prototype/"><img src="../../assets/cwgplogo.png" width="40px' height="40px"></a>
+
+      <button class="hamburger" aria-label="Toggle Navigation">
+        &#9776; <!-- Hamburger icon -->
+      </button>
+
+      <a class="logo" href="/cwgpeople-prototype/"><img src="../../assets/cwgplogo.png" width="40px" height="40px"></a>
+
       <div class="nav-links">
-        <a href="/cwgpeople-prototype/">Home</a>
-        <a href="/cwgpeople-prototype/pages/netsuite/">Netsuite</a>
-        <a href="/cwgpeople-prototype/pages/our-services/">Our Services</a>
+        <div class="nav-link">
+          <a href="/cwgpeople-prototype/">Home</a>
+        </div>
+
+        <div class="nav-link">
+          <a href="/cwgpeople-prototype/pages/netsuite/">Netsuite</a>
+        </div>
+
+        <div class="nav-link">
+          <a href="/cwgpeople-prototype/pages/our-services/">Our Services
+            <span class="arrow">▼</span>
+          </a>
+          <div class="dropdown">
+            <a href="#">NetSuite Administration</a>
+            <a href="#">NetSuite Implementation</a>
+            <a href="#">NetSuite Advisory</a>
+            <a href="#">NetSuite Things We've Done</a>
+            <a href="#">Shared Services</a>
+            <a href="#">Salesforce</a>
+          </div>
+        </div>
+
         <a href="/cwgpeople-prototype/pages/products/">Products</a>
-        <a href="/cwgpeople-prototype/pages/industry-expertise/">Industy Expertise</a>
+
+        <div class="nav-link">
+          <a href="/cwgpeople-prototype/pages/industry-expertise/">Industry Expertise
+            <span class="arrow">▼</span>
+          </a>
+          <div class="dropdown">
+            <a href="#">Manufacturing</a>
+            <a href="#">Non-Profit</a>
+            <a href="#">Retail</a>
+            <a href="#">Distribution</a>
+            <a href="#">Services</a>
+            <a href="#">Software</a>
+          </div>
+        </div>
+
         <a href="/cwgpeople-prototype/pages/partners/">Partners</a>
         <a href="/cwgpeople-prototype/pages/careers/">Careers</a>
-        <a href="/cwgpeople-prototype/pages/about-cwgp/">About CWGP</a>
+
+        <div class="nav-link">
+          <a href="/cwgpeople-prototype/pages/about-cwgp/">About CWGP<span class="arrow">▼</span></a>
+            <div class="dropdown">
+              <a href="#">Gallery</a>
+            </div>
+        </div>
       </div>
       <button class="btn-primary" aria-label="Contact Us Button">Contact Us</button>
     </nav>
   </div>
 </header>
 
+<!-- Sidebar -->
+  <div class="sidebar">
+    <button class="sidebar-close" aria-label="Close Menu">×</button>
+    <div class="sidebar-links">
+      <a href="/cwgpeople-prototype/">Home</a>
+      <a href="/cwgpeople-prototype/pages/netsuite/">Netsuite</a>
+
+      <div class="has-dropdown">
+        <a href="/cwgpeople-prototype/pages/our-services/">Our Services 
+          <span class="arrow">▼</span>
+        </a>
+        <div class="sidebar-dropdown">
+          <a href="#">NetSuite Administration</a>
+          <a href="#">NetSuite Implementation</a>
+          <a href="#">NetSuite Advisory</a>
+          <a href="#">NetSuite Things We've Done</a>
+          <a href="#">Shared Services</a>
+          <a href="#">Salesforce</a>
+        </div>
+      </div>
+
+      <a href="/cwgpeople-prototype/pages/products/">Products</a>
+
+      <div class="has-dropdown">
+        <a href="/cwgpeople-prototype/pages/industry-expertise/">Industry Expertise 
+          <span class="arrow">▼</span>
+        </a>
+        <div class="sidebar-dropdown">
+          <a href="#">Manufacturing</a>
+          <a href="#">Non-Profit</a>
+          <a href="#">Retail</a>
+          <a href="#">Distribution</a>
+          <a href="#">Services</a>
+          <a href="#">Software</a>
+        </div>
+      </div>
+
+      <a href="/cwgpeople-prototype/pages/partners/">Partners</a>
+      <a href="/cwgpeople-prototype/pages/careers/">Careers</a>
+
+      <div class="has-dropdown">
+        <a href="/cwgpeople-prototype/pages/about-cwgp/">About CWGP 
+          <span class="arrow">▼</span>
+        </a>
+        <div class="sidebar-dropdown">
+          <a href="#">Gallery</a>
+        </div>
+      </div>
+
+      <div class="sidebar-btn">
+        <button class="btn-primary">Contact Us</button>
+      </div>
+    </div>
+  </div>
+<!-- End of Sidebar -->
+
+ <!-- Overlay -->
+  <div class="overlay"></div>
+<!-- End of Overlay -->
+
+
 <footer role="contentinfo" aria-label="Site footer with company info and links">
   <div class="footer-container container">
     <div class="footer-brand" aria-label="Company name and logo CWGlobalPeople">
-      CWGlobalPeople
+      <a class="logo" href="/cwgpeople-prototype/"><img src="assets/cwgplogo.png" width="80px" height="80px"></a>
+      <p class="footer-brand-description" style="color:white">
+       Providing clients with the utmost professional NetSuite services experience driven by a desire to produce deliverables of the highest standards. 
+      </p>
     </div>
-    <nav class="footer-links" aria-label="Footer navigation">
-      <h4>Our Services</h4>
+    <nav class="footer-links" aria-label="Footer navigation" style="padding:0;">
+      <h4 class="footer-title">OUR SERVICES</h4>
       <ul>
         <li><a href="#services">Financial</a></li>
         <li><a href="#services">Software</a></li>
@@ -42,11 +151,11 @@
       </ul>
     </nav>
     <div class="footer-contact">
-      <h4>Contact</h4>
+      <h4 class="footer-title">OUR OFFICES</h4>
       <address class="contact-info">
-        <p>Email: info@cwglobalpeople.com</p>
-        <p>Phone: +1 555-0199-123</p>
-        <p>Address: 123 Business Rd, Suite 400, Business City, USA</p>
+        <p><i class="fa-solid fa-map" style="color: #c7963d;"></i>Manila, PH</p>
+        <p><i class="fa-regular fa-envelope" style="color: #c7963d;"></i> info@cwglobalpeople.com</p>
+        <p><i class="fa-solid fa-phone-volume" style="color: #c7963d;"></i> +1 555-0199-123</p>
       </address>
     </div>
   </div>
