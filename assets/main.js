@@ -36,6 +36,6 @@
   setInterval(() => {
     let next = (currentIndex + 1) % testimonials.length;
     showTestimonial(next);
-  }, 8000);
+  }, 3000);
 
   //Testimonal Script Homepage - End
