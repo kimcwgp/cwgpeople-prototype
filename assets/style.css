@@ -53,6 +53,28 @@
     padding: 0 1rem;
     width: 100%;
   }
+  /* Announcement Bar */
+
+  .announcement-bar {
+    background-color: #c49a31; /* Gold-like color */
+    color: white;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    }
+    .contact-info {
+        display: flex;
+        align-items: center;
+    }
+    .email, .phone, .locations {
+        margin: 0 10px;
+        display: flex;
+        align-items: center;  /* Centers the icons vertically with text */
+    }
+    .separator {
+        color: white; /* Adjust color for separator */
+    }
 
   /* Header & Nav */
   header {
