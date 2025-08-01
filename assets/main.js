@@ -51,7 +51,7 @@
       overlay.classList.toggle('active');
       body.classList.toggle('no-scroll');
     });
-     overlay.addEventListener('click', function() {
+    overlay.addEventListener('click', function() {
       sidebar.classList.remove('active');
       overlay.classList.remove('active');
       body.classList.remove('no-scroll');
@@ -61,5 +61,33 @@
       sidebar.classList.remove('active');
       overlay.classList.remove('active');
       body.classList.remove('no-scroll');
+    });
+    // Desktop dropdown - show on hover
+    document.querySelectorAll('.nav-link').forEach(item => {
+      item.addEventListener('mouseenter', () => {
+        const dropdown = item.querySelector('.dropdown');
+        if (dropdown) {
+          dropdown.style.opacity = '1';
+          dropdown.style.visibility = 'visible';
+        }
+      });
+
+      item.addEventListener('mouseleave', () => {
+        const dropdown = item.querySelector('.dropdown');
+        if (dropdown) {
+          dropdown.style.opacity = '0';
+          dropdown.style.visibility = 'hidden';
+        }
+      });
+    });
+    // Mobile dropdown toggle
+    document.querySelectorAll('.sidebar-links .has-dropdown > a').forEach(link => {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.nextElementSibling;
+        dropdown.classList.toggle('active');
+        this.querySelector('.arrow').textContent = 
+          dropdown.classList.contains('active') ? '▲' : '▼';
+      });
     });
 // Header and Mobile Header Script - End 

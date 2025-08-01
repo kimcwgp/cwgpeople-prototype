@@ -78,11 +78,49 @@
     display: flex;
     gap: 3rem;
   }
-  .nav-links a {
-    font-weight: 600;
-    font-size: 15px;
-    color: black;
+  .nav-link {
+      position: relative;
   }
+  .nav-links a {
+      font-weight: 600;
+      font-size: 15px;
+      color: black;
+      text-decoration: none;
+      transition: color 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+  }
+  .nav-links a:hover {
+      color: #b8860b;
+    }
+    .dropdown {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background: white;
+      min-width: 300px;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s;
+      z-index: 100;
+      padding: 1.5rem 0 0 0;
+    }
+
+    .nav-link:hover .dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+    .dropdown a {
+      padding: 0.75rem 1rem;
+    }
+    .dropdown a:hover {
+      background: #f9f9f9;
+    }
+
+
+
 /* Hamburger Menu */
 .hamburger {
   display: none; /* Hidden by default */
@@ -149,6 +187,12 @@
       flex-direction: column;
       padding: 20px;
     }
+
+    .sidebar-link {
+      position: relative;
+    }
+
+
     .sidebar-links a {
       padding: 15px 10px;
       font-weight: 600;
@@ -157,6 +201,37 @@
       border-bottom: 1px solid #eee;
       transition: all 0.3s;
     }
+
+    .sidebar-links a {
+      padding: 15px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .sidebar-links .has-dropdown {
+      position: relative;
+    }
+
+    .sidebar-dropdown {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.3s ease;
+      padding-left: 1rem;
+    }
+
+    .sidebar-dropdown.active {
+      max-height: 500px;
+    }
+    .sidebar-dropdown a {
+      padding: 10px;
+      font-weight: 600;
+      color: black;
+      text-decoration: none;
+      border-bottom: 1px solid #eee;
+      transition: all 0.3s;
+    }
+    
     .sidebar-links a:hover {
       color: #b8860b;
       background-color: #f9f9f9;
