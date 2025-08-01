@@ -58,7 +58,7 @@
   .announcement-bar {
     background-color: #c49a31; /* Gold-like color */
     color: white;
-    padding: 10px 20px;
+    padding: 20px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -73,7 +73,7 @@
         align-items: center;  /* Centers the icons vertically with text */
     }
     .separator {
-        color: white; /* Adjust color for separator */
+        color: black; /* Adjust color for separator */
     }
 
   /* Header & Nav */
