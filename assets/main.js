@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Exit button redirects to a safe site
     exitBtn.addEventListener('click', function() {
-        window.location.href = 'https://www.google.com';
+        window.location.href = 'https://cwglobalpartners.com/';
     });
     
     // Enter button hides the popup and shows content
