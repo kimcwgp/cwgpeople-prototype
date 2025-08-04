@@ -1321,7 +1321,7 @@
  /* Partner Contact Section */
     .partner-section {
       max-width: 1200px;
-      margin: 0 auto 4rem;
+      margin: 1rem auto 4rem;
       padding: 0 16px;
       text-align: center;
     }
@@ -1419,3 +1419,231 @@ form.partner-form button[type="submit"] {
       border-radius: 4px;
     }
 
+/* Product pages Specific Styles */
+    /* Products Intro Section */
+  .products-intro {
+    max-width: 680px;
+    margin: 3rem auto 2rem auto;
+    text-align: center;
+  }
+  .products-intro .section-pretitle {
+    text-transform: uppercase;
+    color: #c29233;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.4rem;
+  }
+  .products-intro h2 {
+    font-weight: 900;
+    font-size: 1.9rem;
+    margin: 0;
+    line-height: 1.2;
+    color: #1b1b1b;
+  }
+  .products-intro h2 em {
+    font-style: normal;
+    font-weight: 700;
+    color: #c29233;
+  }
+/* Products Grid */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 2rem 1.8rem;
+    max-width: 1200px;
+    margin: 0 auto 4rem auto;
+    padding: 0 1rem;
+  }
+  .product-card {
+    background: #fff;
+    box-shadow: 0 0 14px rgb(0 0 0 / 0.05);
+    border-radius: 8px;
+    padding: 1.6rem 1.8rem 2rem 1.8rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: box-shadow 0.25s ease;
+  }
+  .product-card:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.15);
+  }
+  .product-logo {
+    max-width: 200px;
+    margin-bottom: 1rem;
+    user-select: none;
+  }
+  .product-logo img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+  }
+  .product-title {
+    font-weight: 900;
+    font-size: 1.15rem;
+    margin-bottom: 0.7rem;
+    color: #111;
+  }
+  .product-description {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #5a5a5a;
+    flex-grow: 1;
+    margin-bottom: 1.5rem;
+    min-height: 96px;
+  }
+  .learn-more-btn {
+    background-color: #c29233;
+    color: #fff;
+    border: none;
+    padding: 0.48rem 1.2rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    cursor: pointer;
+    align-self: flex-start;
+    transition: background-color 0.25s ease;
+    box-shadow: 0 2px 6px rgb(194 146 51 / 0.45);
+  }
+  .learn-more-btn:hover,
+  .learn-more-btn:focus {
+    background-color: #a2761b;
+    outline: none;
+    box-shadow: 0 0 8px 3px rgb(162 118 27 / 0.6);
+  }
+  /* Product Pricing Section */
+  .pricing-section {
+    background-color: #fcf4d9;
+    position: relative;
+    clip-path: polygon(0 0, 100% 5%, 100% 100%, 0% 100%);
+    padding: 3.5rem 1rem 6rem 1rem;
+    text-align: center;
+  }
+  .pricing-section .example-text {
+    color: #c29233;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .pricing-section h2 {
+    margin: 0.1rem auto 0.7rem auto;
+    font-weight: 900;
+    font-size: 1.75rem;
+    color: #222;
+  }
+  .pricing-section p {
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95rem;
+    margin-bottom: 3rem;
+  }
+  .pricing-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(230px,1fr));
+    gap: 2rem 1.6rem;
+    padding: 0 1rem;
+  }
+  .pricing-card {
+    background: white;
+    border-radius: 9px;
+    box-shadow: 0 0 14px rgb(0 0 0 / 0.07);
+    padding: 1.8rem 1.6rem 2rem 1.6rem;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+  }
+  .pricing-card h3 {
+    font-size: 1rem;
+    font-weight: 900;
+    margin-bottom: 0.3rem;
+    color: #1b1b1b;
+    line-height: 1.2;
+  }
+  .pricing-price {
+    font-size: 1.8rem;
+    font-weight: 900;
+    margin: 0.1rem 0 0.3rem 0;
+    color: #1b1b1b;
+  }
+  .pricing-sub {
+    font-weight: 700;
+    font-size: 0.82rem;
+    color: #777;
+    margin-bottom: 1.4rem;
+  }
+  .pricing-list {
+    text-align: left;
+    margin-bottom: 1.4rem;
+    font-size: 0.85rem;
+    color: #5b4c23;
+    font-weight: 600;
+    list-style-type: none;
+    padding-left: 0;
+  }
+  .pricing-list li {
+    margin-bottom: 0.28rem;
+  }
+  .pricing-getbtn {
+    background-color: #c29233;
+    color: #fff;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border-radius: 6px;
+    border: none;
+    padding: 0.48rem 1.3rem;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgb(194 146 51 / 0.45);
+    transition: background-color 0.3s ease;
+  }
+  .pricing-getbtn:hover,
+  .pricing-getbtn:focus {
+    background-color: #a2761b;
+    outline: none;
+    box-shadow: 0 0 8px 3px rgb(162 118 27 / 0.55);
+  }
+  /* Experts Call-to-Action Section */
+  .experts-cta {
+    background: url("https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/700ae0a2-920d-4446-b9e6-971f38ccc646.png") center center/cover no-repeat;
+    color: white;
+    text-align: left;
+    padding: 4rem 2rem 4rem 2rem;
+    position: relative;
+  }
+  .experts-cta::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(27, 27, 27, 0.75);
+    z-index: 0;
+  }
+  .experts-cta-content {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    z-index: 1;
+  }
+  .experts-cta small {
+    color: #c29233;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+  .experts-cta h2 {
+    color: white;
+    font-weight: 900;
+    font-size: 2rem;
+    margin: 0;
+    line-height: 1.15;
+  }
+  .experts-cta h2 .highlight {
+    color: #c29233;
+  }
+
+
+
+  
