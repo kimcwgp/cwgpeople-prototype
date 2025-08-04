@@ -6,6 +6,7 @@
 <link rel="icon" href="../../assets/cwgplogo.png" type="image/png">
 <title>CWGlobalPeople - Financial, Software & Customer Service</title>
 <link rel="stylesheet" href="../../assets/style.css">
+<script src="https://cdn.tailwindcss.com"></script>
 
 </head>
 <body>
@@ -133,7 +134,163 @@
   <div class="overlay"></div>
 <!-- End of Overlay -->
 
+<!-- Hero Section -->
+<section 
+  class="relative bg-cover bg-center h-[360px] md:h-[420px] flex items-center px-6 md:px-16"
+  style="background-image: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/8cc2a622-085c-45b4-9376-6fa183384bca.png');"
+  aria-label="Professional businesswoman in office smiling holding eyeglasses"
+/>
+  <div class="bg-black bg-opacity-60 w-full max-w-3xl p-6 md:p-10 rounded-md text-white">
+    <div class="gold-bar"></div>
+    <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">Oracle NetSuite</h1>
+    <p class="mt-2 text-sm sm:text-base">
+      NetSuite is the world’s leading provider of cloud-based business management software.
+    </p>
+  </div>
+</section>
 
+<!-- End of Hero Section -->
+
+<!-- Info Section -->
+<section class="py-16 px-6 md:px-16 max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-12 gap-10 items-center">
+  <div class="md:col-span-5 flex justify-center md:justify-end">
+    <div class="image-outline">
+      <div class="custom-rounded-image w-[280px] md:w-[320px] relative">
+        <img 
+          src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e2c50a00-06de-4ee9-b164-d6caf225a944.png" 
+          alt="Three business professionals collaborating with a laptop in a bright modern office" 
+          width="320" height="320"
+          class="object-cover w-full h-full"
+          onerror="this.onerror=null;this.src='https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2b19969e-e93b-42a5-b0c8-9708078e9d35.png';"
+        />
+        <!-- Red geometric polygon overlay -->
+        <div class="geo-overlay pointer-events-none w-full h-full">
+          <svg width="110" height="110" viewBox="0 0 110 110" fill="none" xmlns="http://www.w3.org/2000/svg" >
+            <polygon points="0,0 60,0 30,60 0,110" />
+            <polygon points="60,0 110,50 110,110 80,110 30,60" />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="md:col-span-7">
+    <div class="gold-bar"></div>
+    <h2 class="text-2xl md:text-3xl font-bold mb-4 text-gray-900">
+      Who is <span class="text-[#b58530]">NetSuite?</span>
+    </h2>
+    <p class="text-sm md:text-base mb-4 text-gray-700 leading-relaxed">
+      On November 7, 2016, Oracle completed the acquisition of NetSuite, the very first cloud company.
+    </p>
+    <p class="text-sm md:text-base mb-6 text-gray-700 leading-relaxed">
+      In 1998, NetSuite pioneered the Cloud Computing revolution, establishing the world’s first company dedicated to delivering business applications over the Internet. Today, NetSuite provides an integrated business system that includes cloud-based financials / Enterprise Resource Planning (ERP) and omnichannel commerce software that runs the business of more than 29,000 customers in 215 countries and territories.
+    </p>
+    <button class="btn-primary px-5 py-2 font-semibold rounded hover:shadow-lg transition">
+      KNOW MORE ABOUT NETSUITE >
+    </button>
+  </div>
+</section>
+
+<!-- End of Info Section -->
+
+<!-- Video Section -->
+<section class="bg-gray-800 text-white py-16 px-6 md:px-16">
+  <div class="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+    <div>
+      <div class="gold-bar"></div>
+      <h2 class="text-2xl md:text-3xl font-bold max-w-lg leading-snug mb-4">
+        How <span class="text-[#b58530]">NetSuite</span> helps businesses and customers grow?
+      </h2>
+    </div>
+    <button 
+      class="btn-primary px-5 py-2 font-semibold rounded whitespace-nowrap self-start md:self-auto"
+      onclick="window.open('https://www.youtube.com/watch?v=oHg5SJYRHA0', '_blank', 'noopener')"
+      aria-label="Watch more about NetSuite"
+    >
+      WATCH MORE >
+    </button>
+  </div>
+
+  <div class="max-w-5xl mx-auto mt-8 aspect-video rounded overflow-hidden shadow-lg">
+    <iframe 
+    width="100%" 
+    height="100%" 
+    src="https://www.youtube.com/embed/S7ix3MXC-mc?si=_4VbEvTTC88qc5Gd" 
+    title="YouTube video player" 
+    frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+  </iframe>
+  </div>
+</section>
+
+<!-- End of Video Section -->
+
+<!-- Contact Form Section -->
+<section class="max-w-3xl mx-auto px-6 md:px-0 py-16">
+  <p class="uppercase text-sm font-semibold mb-2 text-[#b58530]">Talk to an Expert.</p>
+  <h3 class="text-3xl font-extrabold mb-10 max-w-md leading-tight">
+    Got <span class="text-[#b58530]">NetSuite</span> Questions?
+  </h3>
+
+    <form id="contactForm" class="space-y-6 max-w-md" novalidate>
+    <input 
+      type="text" 
+      name="fullname" 
+      id="fullname" 
+      placeholder="Full Name" 
+      class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#b58530]"
+      required
+      aria-required="true"
+      aria-label="Full Name"
+    />
+    <input 
+      type="email" 
+      name="email" 
+      id="email" 
+      placeholder="Email" 
+      class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#b58530]"
+      required
+      aria-required="true"
+      aria-label="Email Address"
+    />
+    <input 
+      type="tel" 
+      name="phone" 
+      id="phone" 
+      placeholder="Phone" 
+      class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#b58530]"
+      aria-label="Phone number"
+    />
+     <textarea 
+      name="message" 
+      id="message" 
+      rows="4" 
+      placeholder="Your Message Here" 
+      class="w-full border border-gray-300 px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-[#b58530]"
+      aria-label="Message"
+    ></textarea>
+    <button 
+      type="submit" 
+      class="btn-primary px-6 py-2 font-semibold rounded"
+      aria-label="Submit contact form"
+    >Submit</button>
+  </form>
+  <p id="formStatus" class="mt-4 text-green-600 font-semibold" role="alert" aria-live="polite" style="display:none;"></p>
+</section>
+
+<!-- End of Contact Form Section -->
+
+<!-- Scroll to Top Button -->
+<button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+<!-- End of Scroll to Top Button -->
+
+
+
+  
+
+
+
+<!-- Footer Section -->
 <footer role="contentinfo" aria-label="Site footer with company info and links">
   <div class="footer-container container">
     <div class="footer-brand" aria-label="Company name and logo CWGlobalPeople">
@@ -160,6 +317,7 @@
     </div>
   </div>
 </footer>
+<!-- End of Footer Section -->
 
 </body>
 </html>

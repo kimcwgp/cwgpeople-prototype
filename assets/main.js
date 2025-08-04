@@ -138,3 +138,33 @@ document.addEventListener('DOMContentLoaded', function() {
       });
     });
 // Header and Mobile Header Script - End 
+
+// Scroll to top button functionality
+  const scrollBtn = document.getElementById('scrollTopBtn');
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      scrollBtn.style.display = 'inline-block';
+    } else {
+      scrollBtn.style.display = 'none';
+    }
+  });
+  scrollBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  // Simple form submission handler - will just show a success message and reset the form
+  const form = document.getElementById('contactForm');
+  const status = document.getElementById('formStatus');
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    // Basic validation
+    if(!form.fullname.value.trim() || !form.email.value.trim()) {
+      status.style.color = 'red';
+      status.style.display = 'block';
+      status.textContent = 'Please fill in all required fields (Full Name and Email).';
+      return;
+    }
+    status.style.color = '#065f46'; // Green shade color
+    status.style.display = 'block';
+    status.textContent = 'Thank you for your message! We will get back to you soon.';
+    form.reset();
+  });
