@@ -1638,6 +1638,125 @@ form.partner-form button[type="submit"] {
     color: #c29233;
   }
 
-
-
+/* Industry Expertise Page Specific Styles */
   
+  .section-iwt {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 5vw;
+    gap: 40px;
+    max-width: 1200px;
+    margin: auto;
+  }
+   .content-iwt {
+    max-width: 540px;
+  }
+
+  .icon {
+    width: 48px;
+    height: 48px;
+    margin-bottom: 16px;
+    fill: #299a9c;
+    flex-shrink: 0;
+  }
+
+  .section-iwt h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #c6973a;
+  }
+
+  .section-iwt p {
+    font-size: 1.125rem;
+    margin-bottom: 32px;
+    color: #222;
+  }
+
+  button.learn-more-iwt {
+    background-color: #c6973a;
+    border: none;
+    padding: 14px 28px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 2px;
+    display: inline-flex;
+    align-items: center;
+    transition: background-color 0.3s ease;
+  }
+  button.learn-more-iwt:hover,
+  button.learn-more-iwt:focus {
+    background-color: #b0852c;
+    outline: none;
+  }
+
+   button.learn-more-iwt::after {
+    content: " \u203A"; /* Single right arrow */
+    margin-left: 8px;
+    font-weight: 700;
+  }
+  /* Image container styling */
+  .image-container-iwt {
+    max-width: 600px;
+    width: 100%;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .image-container-iwt img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+  }
+
+  /* Layout for image right */
+  .image-right {
+    flex-direction: row;
+  }
+  /* Layout for image left */
+  .image-left {
+    flex-direction: row-reverse;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 900px) {
+    .section-iwt {
+      padding: 32px 3vw;
+      gap: 30px;
+    }
+    .section-iwt h2 {
+      font-size: 1.75rem;
+    }
+    .section-iwt p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 660px) {
+    .section-iwt {
+      flex-direction: column;
+      text-align: center;
+      padding: 24px 4vw;
+    }
+    .content-iwt {
+      max-width: 100%;
+    }
+    .image-container-iwt {
+      max-width: 100%;
+      box-shadow: none;
+      border-radius: 4px;
+      margin-bottom: 24px;
+    }
+    /* Reverse sign for image left to stack naturally */
+    .image-left {
+      flex-direction: column;
+    }
+  }
+
+
