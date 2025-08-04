@@ -1759,4 +1759,91 @@ form.partner-form button[type="submit"] {
     }
   }
 
+  /* Careers Page Specific Styles */
+
+    .container-careers {
+      max-width: 100%;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+/* Header with small gold line */
+    .header-careers {
+      margin-bottom: 2rem;
+      position: relative;
+      padding-left: 1.75rem;
+      box-shadow: none!important;
+      background-color: transparent!important;
+    }
+    .header-careers::before {
+      content: "";
+      position: absolute;
+      left: 1rem;
+      top: 0.875rem; /* vertically center to align with text */
+      width: 50px;
+      height: 4px;
+      background-color: #b98534; /* gold shade */
+      border-radius: 2px;
+    }
+    .header-careers h1 {
+      margin: 0;
+      font-weight: 900;
+      font-size: 2.4rem;
+      padding: 2rem;
+    }
+    .header-careers h1 strong {
+      font-weight: 900;
+    }
+    .header-careers h1 .gold-careers {
+      color: #b98534;
+    }
+    /* Cards container */
+    .cards-careers {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      padding: 0 10rem;
+    }
+    /* Individual card styles */
+    .card-careers {
+      background-color: #fff;
+      padding: 2rem 2.25rem;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.05);
+      border-radius: 2px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      min-height: 250px;
+    }
+    .cards-careers h2 {
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: #111;
+    }
+    .cards-careers p, .cards-careers strong {
+      font-weight: 400;
+      font-size: 1rem;
+      color: #222;
+      margin: 0.25rem 0;
+    }
+    .cards-careers p:not(:last-child) {
+      margin-bottom: 0.6rem;
+    }
+    /* Bold the "Location:" label in last paragraph */
+    .cards-careers p:last-child strong {
+      font-weight: 700;
+      color: #111;
+    }
+    /* Responsive improvements */
+    @media (max-width: 500px) {
+      .header-careers h1 {
+        font-size: 1.8rem;
+      }
+      .cards-careers {
+        padding: 1.5rem 1.5rem;
+      }
+    }
+
 
