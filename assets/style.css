@@ -1695,7 +1695,7 @@ form.partner-form button[type="submit"] {
   }
 
    button.learn-more-iwt::after {
-    content: " \u203A"; /* Single right arrow */
+    content: ""; /* Single right arrow */
     margin-left: 8px;
     font-weight: 700;
   }
