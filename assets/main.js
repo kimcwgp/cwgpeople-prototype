@@ -168,3 +168,26 @@ document.addEventListener('DOMContentLoaded', function() {
     status.textContent = 'Thank you for your message! We will get back to you soon.';
     form.reset();
   });
+
+  // Our Services Page Script - Start
+   function handleFormSubmit(event) {
+      event.preventDefault();
+      const form = event.target;
+      const fullName = form.fullName.value.trim();
+      const email = form.email.value.trim();
+      const phone = form.phone.value.trim();
+      const message = form.message.value.trim();
+      // Simple validation for demonstration
+      if (!fullName || !email || !phone) {
+        alert("Please fill out all required fields.");
+        return false;
+      }
+      // Simulate form send with a message
+      alert(`Thank you, ${fullName}. Your message has been submitted.`);
+      // Reset form
+      form.reset();
+      return false;
+    }
+
+    // Our Services Script - End
+
