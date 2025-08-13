@@ -232,7 +232,7 @@
   /* Announcement Bar */
 
   .announcement-bar {
-    background-color: #c49a31;
+    background-color: #0f5d7e;
     /* Gold-like color */
     color: white;
     padding: 20px 20px;
@@ -518,13 +518,14 @@
     position: relative;
     z-index: 2;
     max-width: 600px;
-    padding: 2rem;
+    padding: 0;
   }
 
   .hero-hp h1 {
     font-size: 2.8rem;
     line-height: 1.1;
     margin-bottom: 1rem;
+    margin-left: 3rem;
   }
 
   .hero-hp p {
@@ -532,6 +533,7 @@
     font-weight: 400;
     color: #f0e6b6;
     margin-bottom: 1.5rem;
+    margin-left: 3rem;
   }
 
   .hero-image-hp {
