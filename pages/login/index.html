@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Portal Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .hint {
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f26e737b-da2b-4848-a969-181d4019b313.png" alt="Company logo with bold typography and corporate colors" />
+        </div>
+        
+        <h1>Employee Portal Login</h1>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Company Email</label>
+                <input type="email" id="email" placeholder="yourname@company.com" required>
+                <div class="error-message" id="emailError">Please use your company email (ending with @company.com or @company.net)</div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" minlength="8" required>
+                <div class="hint">Must be at least 8 characters</div>
+            </div>
+            
+            <button type="submit">Sign In</button>
+            <p style="text-align:center; margin-top:15px;">
+                New employee? <a href="/register">Request account</a>
+            </p>
+        </form>
+        
+        <div class="footer">
+            &copy; 2023 Company Name. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+        // Check if trying to access dashboard without login
+        if (window.location.pathname === '/dashboard' && !sessionStorage.getItem('authenticated')) {
+            window.location.href = '/';  // Redirect to login page
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const emailError = document.getElementById('emailError');
+            const allowedDomains = ['company.com', 'company.net']; // Replace with your actual company domains
+            
+            // Reset error state
+            emailError.style.display = 'none';
+            
+            // Validate company email domain
+            const emailDomain = email.split('@')[1];
+            if (!allowedDomains.includes(emailDomain)) {
+                emailError.style.display = 'block';
+                return;
+            }
+            
+            // Set a session flag for successful login
+            sessionStorage.setItem('authenticated', 'true');
+            
+            // Redirect to dashboard
+            window.location.href = '/dashboard';
+        });
+    </script>
+</body>
+</html>
