@@ -238,6 +238,10 @@
     </div>
 
     <script>
+        if (!sessionStorage.getItem('authenticated')) {
+              window.location.replace('/'); // or your login page
+            }
+
         // Configuration - Replace with your actual GAS URL
         const GAS_URL = "https://script.google.com/a/macros/cwglobalpeople.com/s/AKfycbwBcWXROwtxoKsMLcC4eY5HASl6lGmUDbKzE3AuZ5gO9GpvQKMGXi3fN1gJaoLRTTf32g/exec";
         
@@ -291,7 +295,7 @@
                     },
                     body: JSON.stringify({
                         action: `clock_${action}`,
-                        employeeId: 'CURRENT_EMPLOYEE_ID' // Replace with actual employee ID
+                        email: sessionStorage.getItem('email')
                     })
                 });
 
@@ -323,7 +327,7 @@
                     },
                     body: JSON.stringify({
                         action: 'check_status',
-                        employeeId: 'CURRENT_EMPLOYEE_ID' // Replace with actual employee ID
+                        email: sessionStorage.getItem('email')
                     })
                 });
 
