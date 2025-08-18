@@ -136,23 +136,6 @@
                 <input type="email" id="email" placeholder="yourname@company.com" required>
                 <div class="error-message" id="emailError">Must be a valid company email</div>
             </div>
-            
-            <div class="form-group">
-                <label for="department">Department</label>
-                <select id="department" required>
-                    <option value="">Select your department</option>
-                    <option>HR</option>
-                    <option>IT</option>
-                    <option>Finance</option>
-                    <option>Operations</option>
-                </select>
-            </div>
-            
-            <div class="form-group">
-                <label for="managerEmail">Manager's Email</label>
-                <input type="email" id="managerEmail" placeholder="manager@company.com">
-                <div class="hint">For account verification</div>
-            </div>
 
             <div class="form-group">
                 <label for="password">Create Password</label>
@@ -169,13 +152,10 @@
             </div>
             
             <button type="submit">Create Account</button>
-            <div class="register-link">
-                New employee? <a href="/register.html">Request account</a>
-            </div>
         </form>
         
         <div class="footer">
-            &copy; 2023 Company Name. All rights reserved.
+            &copy; 2025 CWGlobal People. All rights reserved.
         </div>
     </div>
 
@@ -187,7 +167,7 @@
             const password = document.getElementById('password').value;
             const confirmPassword = document.getElementById('confirmPassword').value;
             const emailError = document.getElementById('emailError');
-            const allowedDomains = ['company.com', 'company.net'];
+            const allowedDomains = ['cwglobalpeople.com', 'cwglobalpartners.com'];
             
             // Reset error state
             emailError.style.display = 'none';
