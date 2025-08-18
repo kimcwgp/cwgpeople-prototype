@@ -145,34 +145,44 @@
     </div>
 
     <script>
-        // Check if trying to access dashboard without login
-        if (window.location.pathname === '/dashboard' && !sessionStorage.getItem('authenticated')) {
-            window.location.href = '/';  // Redirect to login page
-        }
-
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value;
-            const emailError = document.getElementById('emailError');
-            const allowedDomains = ['company.com', 'company.net']; // Replace with your actual company domains
-            
-            // Reset error state
-            emailError.style.display = 'none';
-            
-            // Validate company email domain
-            const emailDomain = email.split('@')[1];
-            if (!allowedDomains.includes(emailDomain)) {
-                emailError.style.display = 'block';
-                return;
-            }
-            
-            // Set a session flag for successful login
-            sessionStorage.setItem('authenticated', 'true');
-            
-            // Redirect to dashboard
-            window.location.href = '/dashboard';
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbyour-long-id/exec";
+    
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+    
+      const email = document.getElementById('email').value.trim();
+      const password = document.getElementById('password').value;
+      const emailError = document.getElementById('emailError');
+      emailError.style.display = 'none';
+    
+      const allowedDomains = ['cwglobalpeople.com', 'cwglobalpartners.com'];
+      const emailDomain = (email.split('@')[1] || '').toLowerCase();
+      if (!allowedDomains.includes(emailDomain)) {
+        emailError.style.display = 'block';
+        return;
+      }
+    
+      try {
+        const res = await fetch(GAS_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action: 'login', email, password })
         });
-    </script>
+        const data = await res.json();
+    
+        if (data.success) {
+          sessionStorage.setItem('authenticated', 'true');
+          sessionStorage.setItem('email', email);
+          window.location.href = '/dashboard';
+        } else {
+          alert('Invalid email or password.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network/server error.');
+      }
+    });
+</script>
+
 </body>
 </html>
