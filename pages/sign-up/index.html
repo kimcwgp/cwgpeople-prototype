@@ -195,7 +195,7 @@
         if (data.success) {
           sessionStorage.setItem('authenticated', 'true');
           sessionStorage.setItem('email', email);
-          window.location.href = '/dashboard';
+          window.location.href = '/cwgpeople-prototype/pages/time-tracker/';
         } else if (data.error === 'exists') {
           alert('That email is already registered.');
         } else if (data.error === 'invalid_domain') {
