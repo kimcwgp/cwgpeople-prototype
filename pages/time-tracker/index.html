@@ -303,10 +303,11 @@
                 
                 if (data.success) {
                     updateStatus(data.newStatus, data.timestamp);
-                    updateActivityTable(data.activity);
+                    // Instead of updating table with missing data, reload full status
+                    await checkStatus();
                     showMessage(`Successfully clocked ${action} at ${formatTime(data.timestamp)}`, 'success');
                 } else {
-                    throw new Error(data.message || `Failed to clock ${action}`);
+                    throw new Error(data.error || data.message || `Failed to clock ${action}`);
                 }
             } catch (error) {
                 console.error(`Error clocking ${action}:`, error);
