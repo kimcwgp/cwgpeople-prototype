@@ -290,6 +290,9 @@
                 // Make API call to GAS
                 const response = await fetch(GAS_URL, {
                     method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                     body: JSON.stringify({
                         action: `clock_${action}`,
                         email: sessionStorage.getItem('email')
@@ -319,6 +322,9 @@
             try {
                 const response = await fetch(GAS_URL, {
                     method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
                     body: JSON.stringify({
                         action: 'check_status',
                         email: sessionStorage.getItem('email')
