@@ -238,111 +238,197 @@
     </div>
 
     <script>
-        // Redirect if not logged in
 if (!sessionStorage.getItem('authenticated')) {
-  window.location.replace('/cwgpeople-prototype/pages/time-tracker/');
-}
+              window.location.replace('/cwgpeople-prototype/pages/time-tracker/'); // or your login page
+            }
 
-const userEmail = sessionStorage.getItem('email');
-const GAS_URL = "https://script.google.com/macros/s/AKfycbwxBcSIFY1qXWCvtS5zhsxdKofV9H8g88RPt4gXEuzHMrwlzp8VdsAtAlgfqCpIMmMHXQ/exec";
+        // Configuration - Replace with your actual GAS URL
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbwxBcSIFY1qXWCvtS5zhsxdKofV9H8g88RPt4gXEuzHMrwlzp8VdsAtAlgfqCpIMmMHXQ/exec";
+        
+        // DOM Elements
+        const clockInBtn = document.getElementById('clock-in-btn');
+        const clockOutBtn = document.getElementById('clock-out-btn');
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusText = document.getElementById('status-text');
+        const lastActionTime = document.getElementById('last-action-time');
+        const activityTableBody = document.getElementById('activity-table-body');
+        const messageArea = document.getElementById('message-area');
 
-// DOM Elements
-const clockInBtn = document.getElementById('clock-in-btn');
-const clockOutBtn = document.getElementById('clock-out-btn');
-const statusIndicator = document.getElementById('status-indicator');
-const statusText = document.getElementById('status-text');
-const lastActionTime = document.getElementById('last-action-time');
-const activityTableBody = document.getElementById('activity-table-body');
-const messageArea = document.getElementById('message-area');
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    checkStatus();
-    clockInBtn.addEventListener('click', () => handleClockAction('in'));
-    clockOutBtn.addEventListener('click', () => handleClockAction('out'));
-});
-
-// Clock in/out handler
-async function handleClockAction(action) {
-    showMessage('', '');
-    clockInBtn.disabled = true;
-    clockOutBtn.disabled = true;
-
-    try {
-        const response = await fetch(GAS_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: `clock_${action}`, email: userEmail })
-        });
-        const data = await response.json();
-
-        if (data.success) {
-            updateStatus(data.newStatus, data.timestamp);
-            await checkStatus();
-            showMessage(`Successfully clocked ${action} at ${formatTime(data.timestamp)}`, 'success');
-        } else {
-            throw new Error(data.error || data.message || `Failed to clock ${action}`);
-        }
-    } catch (error) {
-        console.error(`Error clocking ${action}:`, error);
-        showMessage(error.message || `Error clocking ${action}. Please try again.`, 'error');
-        checkStatus();
-    } finally {
-        clockInBtn.disabled = false;
-        clockOutBtn.disabled = false;
-    }
-}
-
-// Check current status
-async function checkStatus() {
-    try {
-        const response = await fetch(GAS_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ action: 'check_status', email: userEmail })
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkStatus(); // Check current status when page loads
+            
+            // Event Listeners
+            clockInBtn.addEventListener('click', () => handleClockAction('in'));
+            clockOutBtn.addEventListener('click', () => handleClockAction('out'));
         });
 
-        const data = await response.json();
-        if (data.success) {
-            updateStatus(data.currentStatus, data.lastActionTime);
-            updateActivityTable(data.activity);
-        } else {
-            throw new Error(data.message || 'Failed to check status');
+        // Handle clock in/out actions
+        async function handleClockAction(action) {
+            showMessage('', ''); // Clear any messages
+            
+            // Disable both buttons during processing
+            clockInBtn.disabled = true;
+            clockOutBtn.disabled = true;
+            
+            // Add loading spinners
+            const loadingHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Clocking ${action}...
+            `;
+            
+            if (action === 'in') {
+                clockInBtn.innerHTML = loadingHTML;
+            } else {
+                clockOutBtn.innerHTML = loadingHTML;
+            }
+
+            try {
+                // Make API call to GAS
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: `clock_${action}`,
+                        email: sessionStorage.getItem('email')
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateStatus(data.newStatus, data.timestamp);
+                    // Instead of updating table with missing data, reload full status
+                    await checkStatus();
+                    showMessage(`Successfully clocked ${action} at ${formatTime(data.timestamp)}`, 'success');
+                } else {
+                    throw new Error(data.error || data.message || `Failed to clock ${action}`);
+                }
+            } catch (error) {
+                console.error(`Error clocking ${action}:`, error);
+                showMessage(error.message || `Error clocking ${action}. Please try again.`, 'error');
+                checkStatus(); // Refresh status to ensure UI matches actual state
+            } finally {
+                resetButtonStates();
+            }
         }
-    } catch (error) {
-        console.error('Error checking status:', error);
-        showMessage('Could not load current status', 'error');
-    }
-}
 
-// Update status indicators
-function updateStatus(status, time) {
-    statusIndicator.textContent = status === 'in' ? 'Clocked In' : 'Clocked Out';
-    lastActionTime.textContent = time ? `Last action: ${formatTime(time)}` : '';
-}
+        // Check current status
+        async function checkStatus() {
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'check_status',
+                        email: sessionStorage.getItem('email')
+                    })
+                });
 
-// Update activity table
-function updateActivityTable(activity) {
-    activityTableBody.innerHTML = '';
-    activity.forEach(item => {
-        const row = document.createElement('tr');
-        row.innerHTML = `<td>${formatTime(item.timestamp)}</td><td>${item.action}</td>`;
-        activityTableBody.appendChild(row);
-    });
-}
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateStatus(data.currentStatus, data.lastActionTime);
+                    updateActivityTable(data.activity);
+                } else {
+                    throw new Error(data.message || 'Failed to check status');
+                }
+            } catch (error) {
+                console.error('Error checking status:', error);
+                showMessage('Could not load current status', 'error');
+            }
+        }
 
-// Format timestamp nicely
-function formatTime(ts) {
-    const date = new Date(ts);
-    return date.toLocaleString();
-}
+        // Update status UI
+        function updateStatus(status, timestamp) {
+            if (status === 'in') {
+                statusIndicator.className = 'status-indicator status-in';
+                statusText.textContent = 'Clocked in';
+                clockInBtn.disabled = true;
+                clockOutBtn.disabled = false;
+            } else {
+                statusIndicator.className = 'status-indicator status-out';
+                statusText.textContent = 'Not clocked in';
+                clockInBtn.disabled = false;
+                clockOutBtn.disabled = true;
+            }
 
-// Show messages
-function showMessage(msg, type) {
-    messageArea.textContent = msg;
-    messageArea.className = type ? type : '';
-}
+            if (timestamp) {
+                lastActionTime.textContent = `Last action: ${formatTime(timestamp)}`;
+            }
+        }
 
+        // Update activity table
+        function updateActivityTable(activity = []) {
+            if (activity.length === 0) {
+                activityTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="2" class="text-center text-gray-500 py-4">No activity recorded today</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            activityTableBody.innerHTML = activity.map(item => `
+                <tr class="fade-in">
+                    <td class="time-display">${formatTime(item.timestamp)}</td>
+                    <td class="${item.action === 'in' ? 'text-green-600 font-medium' : 'text-blue-600 font-medium'}">
+                        Clock ${item.action}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Show message to user
+        function showMessage(message, type = '') {
+            if (!message) {
+                messageArea.classList.add('hidden');
+                return;
+            }
+
+            messageArea.textContent = message;
+            messageArea.classList.remove('hidden');
+            
+            // Clear any existing classes
+            messageArea.className = 'message';
+            
+            // Add appropriate class based on type
+            if (type === 'error') {
+                messageArea.classList.add('message-error');
+            } else if (type === 'success') {
+                messageArea.classList.add('message-success');
+            }
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageArea.classList.add('hidden');
+                }, 5000);
+            }
+        }
+
+        // Format timestamp
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+        }
+
+        // Reset button states after action
+        function resetButtonStates() {
+            clockInBtn.disabled = statusIndicator.classList.contains('status-in');
+            clockOutBtn.disabled = !clockInBtn.disabled;
+            
+            // Reset button text
+            clockInBtn.innerHTML = 'Clock In';
+            clockOutBtn.innerHTML = 'Clock Out';
+        }
     </script>
 </body>
 </html>
