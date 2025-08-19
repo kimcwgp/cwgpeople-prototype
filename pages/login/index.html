@@ -135,7 +135,7 @@
             
             <button type="submit">Sign In</button>
             <p style="text-align:center; margin-top:15px;">
-                New employee? <a href="/cwgpeople-prototype/pages/sign-up/">Create Account</a>
+                New employee? <a href="/cwgpeople-prototype/pages/sign-up-v2/">Create Account</a>
             </p>
         </form>
         
@@ -172,7 +172,7 @@
         if (data.success) {
           sessionStorage.setItem('authenticated', 'true');
           sessionStorage.setItem('email', email);
-          window.location.href = '/cwgpeople-prototype/pages/time-tracker/';
+          window.location.href = '/cwgpeople-prototype/pages/time-tracker-v2/';
         } else {
           alert('Invalid email or password.');
         }
