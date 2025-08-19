@@ -152,58 +152,62 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     return;
   }
 
-  // Collect all form data
-  const formData = {
-    action: 'signup',
-    email,
-    password,
+      // Collect all form data
+    const formData = {
+      action: 'signup',
+      email,
+      password,
 
-    // Basic
-    firstName: document.getElementById('firstName')?.value || '',
-    middleName: document.getElementById('middleName')?.value || '',
-    lastName: document.getElementById('lastName')?.value || '',
-    gender: document.getElementById('gender')?.value || '',
-    presentAddress: document.getElementById('presentAddress')?.value || '',
-    permanentAddress: document.getElementById('permanentAddress')?.value || '',
-    birthDate: document.getElementById('birthDate')?.value || '',
-    birthPlace: document.getElementById('birthPlace')?.value || '',
-    citizenship: document.getElementById('citizenship')?.value || '',
-    civilStatus: document.getElementById('civilStatus')?.value || '',
-    landline: document.getElementById('landline')?.value || '',
-    mobile: document.getElementById('mobile')?.value || '',
-    personalEmail: document.getElementById('personalEmail')?.value || '',
+      // Basic
+      firstName: document.getElementById('firstName')?.value || '',
+      middleName: document.getElementById('middleName')?.value || '',
+      lastName: document.getElementById('lastName')?.value || '',
+      gender: document.getElementById('gender')?.value || '',
+      presentAddress: document.getElementById('presentAddress')?.value || '',
+      permanentAddress: document.getElementById('permanentAddress')?.value || '',
+      birthDate: document.getElementById('birthDate')?.value || '',
+      birthPlace: document.getElementById('birthPlace')?.value || '',
+      citizenship: document.getElementById('citizenship')?.value || '',
+      civilStatus: document.getElementById('civilStatus')?.value || '',
+      landline: document.getElementById('landline')?.value || '',
+      mobile: document.getElementById('mobile')?.value || '',
+      personalEmail: document.getElementById('personalEmail')?.value || '',
 
-    // Spouse (only if married section is shown)
-      firstName: document.getElementById('spouseFirstName')?.value || '',
-      middleName: document.getElementById('spouseMiddleName')?.value || '',
-      lastName: document.getElementById('spouseLastName')?.value || '',
-      age: document.getElementById('spouseAge')?.value || '',
-      birthDate: document.getElementById('spouseBirthDate')?.value || '',
-      hasHealthCard: document.getElementById('spouseHealthCard')?.value || '',
-      healthCardPhoto: document.getElementById('spouseHealthCardPhoto')?.value || ''
-   
-
-    // Children
-    children: [
-      {
-        name: document.getElementById('child1Name')?.value || '',
-        age: document.getElementById('child1Age')?.value || '',
-        gender: document.getElementById('child1Gender')?.value || '',
-        birthDate: document.getElementById('child1BirthDate')?.value || ''
+      // Spouse (always included, even if blank)
+      spouse: {
+        firstName: document.getElementById('spouseFirstName')?.value || '',
+        middleName: document.getElementById('spouseMiddleName')?.value || '',
+        lastName: document.getElementById('spouseLastName')?.value || '',
+        age: document.getElementById('spouseAge')?.value || '',
+        birthDate: document.getElementById('spouseBirthDate')?.value || '',
+        hasHealthCard: document.getElementById('spouseHealthCard')?.value || '',
+        healthCardPhoto: document.getElementById('spouseHealthCardPhoto')?.value || ''
       },
-      {
-        name: document.getElementById('child2Name')?.value || '',
-        age: document.getElementById('child2Age')?.value || '',
-        gender: document.getElementById('child2Gender')?.value || '',
-        birthDate: document.getElementById('child2BirthDate')?.value || ''
-      },
-      {
-        name: document.getElementById('child3Name')?.value || '',
-        age: document.getElementById('child3Age')?.value || '',
-        gender: document.getElementById('child3Gender')?.value || '',
-        birthDate: document.getElementById('child3BirthDate')?.value || ''
-      }
-    ] : [],
+
+      // Children (always included, even if blank)
+      children: [
+        {
+          name: document.getElementById('child1Name')?.value || '',
+          age: document.getElementById('child1Age')?.value || '',
+          gender: document.getElementById('child1Gender')?.value || '',
+          birthDate: document.getElementById('child1BirthDate')?.value || ''
+        },
+        {
+          name: document.getElementById('child2Name')?.value || '',
+          age: document.getElementById('child2Age')?.value || '',
+          gender: document.getElementById('child2Gender')?.value || '',
+          birthDate: document.getElementById('child2BirthDate')?.value || ''
+        },
+        {
+          name: document.getElementById('child3Name')?.value || '',
+          age: document.getElementById('child3Age')?.value || '',
+          gender: document.getElementById('child3Gender')?.value || '',
+          birthDate: document.getElementById('child3BirthDate')?.value || ''
+        }
+      ]
+    };
+
+
 
     // Parents
     father: {
