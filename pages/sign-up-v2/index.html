@@ -259,7 +259,7 @@
       } else if (data.error === 'invalid_domain') {
         emailError.style.display = 'block';
       } else {
-        alert('Sign-up failed. Please try again.');
+        alert('Sign-up failed: ' + (data.error || 'Unknown error'));
       }
     } catch (err) {
       console.error(err);
