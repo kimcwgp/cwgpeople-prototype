@@ -128,36 +128,36 @@
 </div>
 
 <script>
-const GAS_URL = "https://script.google.com/macros/s/AKfycbzJvPqgmuFV5d2ueGoNt3D29ycol3QG5iiViTObBYuOD5TG_BPJK3bpz9p4JWPLtSvSjg/exec";
-
-document.getElementById('registerForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-
-  const email = document.getElementById('email').value.trim();
-  const password = document.getElementById('password').value;
-  const confirmPassword = document.getElementById('confirmPassword').value;
-  const emailError = document.getElementById('emailError');
-
-  const allowedDomains = ['cwglobalpeople.com', 'cwglobalpartners.com'];
-  emailError.style.display = 'none';
-
-  const emailDomain = (email.split('@')[1] || '').toLowerCase();
-  if (!allowedDomains.includes(emailDomain)) {
-    emailError.style.display = 'block';
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    alert('Passwords do not match!');
-    return;
-  }
-
-      // Collect all form data
+  const GAS_URL = "https://script.google.com/macros/s/AKfycbzJvPqgmuFV5d2ueGoNt3D29ycol3QG5iiViTObBYuOD5TG_BPJK3bpz9p4JWPLtSvSjg/exec";
+  
+  document.getElementById('registerForm').addEventListener('submit', async function(e) {
+    e.preventDefault();
+  
+    const email = document.getElementById('email').value.trim();
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirmPassword').value;
+    const emailError = document.getElementById('emailError');
+  
+    const allowedDomains = ['cwglobalpeople.com', 'cwglobalpartners.com'];
+    emailError.style.display = 'none';
+  
+    const emailDomain = (email.split('@')[1] || '').toLowerCase();
+    if (!allowedDomains.includes(emailDomain)) {
+      emailError.style.display = 'block';
+      return;
+    }
+  
+    if (password !== confirmPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+  
+    // ✅ Collect all form data in one single object
     const formData = {
       action: 'signup',
       email,
       password,
-
+  
       // Basic
       firstName: document.getElementById('firstName')?.value || '',
       middleName: document.getElementById('middleName')?.value || '',
@@ -172,8 +172,8 @@ document.getElementById('registerForm').addEventListener('submit', async functio
       landline: document.getElementById('landline')?.value || '',
       mobile: document.getElementById('mobile')?.value || '',
       personalEmail: document.getElementById('personalEmail')?.value || '',
-
-      // Spouse (always included, even if blank)
+  
+      // Spouse
       spouse: {
         firstName: document.getElementById('spouseFirstName')?.value || '',
         middleName: document.getElementById('spouseMiddleName')?.value || '',
@@ -183,8 +183,8 @@ document.getElementById('registerForm').addEventListener('submit', async functio
         hasHealthCard: document.getElementById('spouseHealthCard')?.value || '',
         healthCardPhoto: document.getElementById('spouseHealthCardPhoto')?.value || ''
       },
-
-      // Children (always included, even if blank)
+  
+      // Children
       children: [
         {
           name: document.getElementById('child1Name')?.value || '',
@@ -204,69 +204,67 @@ document.getElementById('registerForm').addEventListener('submit', async functio
           gender: document.getElementById('child3Gender')?.value || '',
           birthDate: document.getElementById('child3BirthDate')?.value || ''
         }
+      ],
+  
+      // Parents
+      father: {
+        name: document.getElementById('fatherName')?.value || '',
+        age: document.getElementById('fatherAge')?.value || '',
+        birthDate: document.getElementById('fatherBirthDate')?.value || '',
+        civilStatus: document.getElementById('fatherCivilStatus')?.value || ''
+      },
+      mother: {
+        name: document.getElementById('motherName')?.value || '',
+        age: document.getElementById('motherAge')?.value || '',
+        birthDate: document.getElementById('motherBirthDate')?.value || '',
+        civilStatus: document.getElementById('motherCivilStatus')?.value || ''
+      },
+  
+      // Government IDs
+      tin: document.getElementById('tin')?.value || '',
+      sss: document.getElementById('sss')?.value || '',
+      philhealth: document.getElementById('philhealth')?.value || '',
+      pagibig: document.getElementById('pagibig')?.value || '',
+      existingLoan: document.getElementById('existingLoan')?.value || '',
+  
+      // Emergency
+      emergencyContact: {
+        name: document.getElementById('emergencyName')?.value || '',
+        relationship: document.getElementById('emergencyRelationship')?.value || '',
+        number: document.getElementById('emergencyNumber')?.value || ''
+      },
+  
+      // Dependents
+      dependents: [
+        document.getElementById('dependent1')?.value || '',
+        document.getElementById('dependent2')?.value || '',
+        document.getElementById('dependent3')?.value || '',
+        document.getElementById('dependent4')?.value || ''
       ]
     };
-
-
-
-    // Parents
-    father: {
-      name: document.getElementById('fatherName')?.value || '',
-      age: document.getElementById('fatherAge')?.value || '',
-      birthDate: document.getElementById('fatherBirthDate')?.value || '',
-      civilStatus: document.getElementById('fatherCivilStatus')?.value || ''
-    },
-    mother: {
-      name: document.getElementById('motherName')?.value || '',
-      age: document.getElementById('motherAge')?.value || '',
-      birthDate: document.getElementById('motherBirthDate')?.value || '',
-      civilStatus: document.getElementById('motherCivilStatus')?.value || ''
-    },
-
-    // Government IDs
-    tin: document.getElementById('tin')?.value || '',
-    sss: document.getElementById('sss')?.value || '',
-    philhealth: document.getElementById('philhealth')?.value || '',
-    pagibig: document.getElementById('pagibig')?.value || '',
-    existingLoan: document.getElementById('existingLoan')?.value || '',
-
-    // Emergency
-    emergencyContact: {
-      name: document.getElementById('emergencyName')?.value || '',
-      relationship: document.getElementById('emergencyRelationship')?.value || '',
-      number: document.getElementById('emergencyNumber')?.value || ''
-    },
-
-    // Dependents
-    dependents: [
-      document.getElementById('dependent1')?.value || '',
-      document.getElementById('dependent2')?.value || '',
-      document.getElementById('dependent3')?.value || '',
-      document.getElementById('dependent4')?.value || ''
-    ]
-  };
-
-  try {
-    const res = await fetch(GAS_URL, {
-      method: 'POST',
-      body: JSON.stringify(formData)
-    });
-    const data = await res.json();
-
-    if (data.success) {
-      sessionStorage.setItem('authenticated', 'true');
-      sessionStorage.setItem('email', email);
-      window.location.href = '/cwgpeople-prototype/pages/time-tracker/';
-    } else if (data.error === 'exists') {
-      alert('That email is already registered.');
-    } else if (data.error === 'invalid_domain') {
-      emailError.style.display = 'block';
-    } else {
-      alert('Sign-up failed. Please try again.');
+  
+    try {
+      const res = await fetch(GAS_URL, {
+        method: 'POST',
+        body: JSON.stringify(formData)
+      });
+      const data = await res.json();
+  
+      if (data.success) {
+        sessionStorage.setItem('authenticated', 'true');
+        sessionStorage.setItem('email', email);
+        window.location.href = '/cwgpeople-prototype/pages/time-tracker/';
+      } else if (data.error === 'exists') {
+        alert('That email is already registered.');
+      } else if (data.error === 'invalid_domain') {
+        emailError.style.display = 'block';
+      } else {
+        alert('Sign-up failed. Please try again.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Network/server error.');
     }
-  } catch (err) {
-    console.error(err);
-    alert('Network/server error.');
-  }
-});
-</script>
+  });
+  </script>
+  
