@@ -115,7 +115,7 @@
     </div>
     <div class="form-group">
       <label for="password">Create Password</label>
-      <input type="password" id="password" minlength="8" required pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="At least 8 chars w/ uppercase & number">
+      <input type="password" id="password" minlength="8" placeholder="At least 8 chars w/ uppercase & number">
     </div>
     <div class="form-group">
       <label for="confirmPassword">Confirm Password</label>
@@ -252,7 +252,7 @@ document.getElementById('registerForm').addEventListener('submit', async functio
     if (data.success) {
       sessionStorage.setItem('authenticated', 'true');
       sessionStorage.setItem('email', email);
-      window.location.href = '/cwgpeople-prototype/pages/time-tracker-v2/';
+      window.location.href = '/cwgpeople-prototype/pages/time-tracker/';
     } else if (data.error === 'exists') {
       alert('That email is already registered.');
     } else if (data.error === 'invalid_domain') {
