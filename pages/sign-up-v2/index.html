@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Employee Account Request</title>
+  <style>
+    * {margin:0; padding:0; box-sizing:border-box; font-family:'Segoe UI',sans-serif;}
+    body {background:#f5f7fa; display:flex; justify-content:center; align-items:center; min-height:100vh; padding:20px;}
+    .login-container {background:#fff; border-radius:10px; box-shadow:0 4px 15px rgba(0,0,0,0.1); width:100%; max-width:600px; padding:30px; overflow-y:auto; max-height:95vh;}
+    .logo {text-align:center; margin-bottom:20px;}
+    .logo img {width:120px;}
+    h1 {text-align:center; margin-bottom:20px; color:#2c3e50; font-size:22px;}
+    h2 {margin:20px 0 10px; font-size:18px; color:#34495e; border-bottom:1px solid #ddd; padding-bottom:5px;}
+    .form-group {margin-bottom:15px;}
+    label {display:block; margin-bottom:6px; color:#34495e; font-weight:500;}
+    input, select {width:100%; padding:10px; border:1px solid #ddd; border-radius:6px; font-size:15px;}
+    input:focus, select:focus {outline:none; border-color:#3498db;}
+    button {width:100%; padding:12px; background:#3498db; color:#fff; border:none; border-radius:6px; font-size:16px; cursor:pointer;}
+    button:hover {background:#2980b9;}
+    .error-message {color:#e74c3c; font-size:13px; display:none;}
+    .section {margin-bottom:20px;}
+    .hidden {display:none;}
+    .footer {text-align:center; margin-top:20px; color:#7f8c8d; font-size:14px;}
+  </style>
+</head>
+<body>
+<div class="login-container">
+  <div class="logo">
+    <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f26e737b-da2b-4848-a969-181d4019b313.png" alt="Company Logo">
+  </div>
+  <h1>Employee Account Request</h1>
+  <form id="registerForm">
+
+    <!-- Basic Info -->
+    <h2>Basic Information</h2>
+    <div class="form-group"><label>First Name</label><input type="text" id="firstName" required></div>
+    <div class="form-group"><label>Middle Name</label><input type="text" id="middleName"></div>
+    <div class="form-group"><label>Last Name</label><input type="text" id="lastName" required></div>
+    <div class="form-group"><label>Gender</label><select id="gender" required><option value="">Select</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+    <div class="form-group"><label>Present Address (with Zip Code)</label><input type="text" id="presentAddress" required></div>
+    <div class="form-group"><label>Permanent Address (with Zip Code)</label><input type="text" id="permanentAddress" required></div>
+    <div class="form-group"><label>Date of Birth</label><input type="date" id="dob" required></div>
+    <div class="form-group"><label>Place of Birth</label><input type="text" id="birthPlace" required></div>
+    <div class="form-group"><label>Citizenship</label><input type="text" id="citizenship" required></div>
+    <div class="form-group"><label>Civil Status</label><input type="text" id="civilStatus" required></div>
+    <div class="form-group"><label>Landline Number</label><input type="text" id="landline"></div>
+    <div class="form-group"><label>Mobile Number</label><input type="text" id="mobile" required></div>
+    <div class="form-group"><label>Personal Email Address</label><input type="email" id="personalEmail"></div>
+
+    <!-- Spouse -->
+    <h2>Spouse Details</h2>
+      <div class="form-group"><label>First Name</label><input type="text" id="spouseFirstName"></div>
+      <div class="form-group"><label>Middle Name</label><input type="text" id="spouseMiddleName"></div>
+      <div class="form-group"><label>Last Name</label><input type="text" id="spouseLastName"></div>
+      <div class="form-group"><label>Age</label><input type="number" id="spouseAge"></div>
+      <div class="form-group"><label>Date of Birth</label><input type="date" id="spouseDob"></div>
+      <div class="form-group"><label>With Existing Health Card?</label><select id="spouseHealth"><option>No</option><option>Yes</option></select></div>
+
+    <!-- Children -->
+    <h2>Children’s Info</h2>
+      <div class="form-group"><label>Child 1 - Name</label><input type="text" id="child1Name"></div>
+      <div class="form-group"><label>Age</label><input type="number" id="child1Age"></div>
+      <div class="form-group"><label>Gender</label><select id="child1Gender"><option>Male</option><option>Female</option></select></div>
+      <div class="form-group"><label>Date of Birth</label><input type="date" id="child1Dob"></div>
+
+      <div class="form-group"><label>Child 2 - Name</label><input type="text" id="child2Name"></div>
+      <div class="form-group"><label>Age</label><input type="number" id="child2Age"></div>
+      <div class="form-group"><label>Gender</label><select id="child2Gender"><option>Male</option><option>Female</option></select></div>
+      <div class="form-group"><label>Date of Birth</label><input type="date" id="child2Dob"></div>
+
+      <div class="form-group"><label>Child 3 - Name</label><input type="text" id="child3Name"></div>
+      <div class="form-group"><label>Age</label><input type="number" id="child3Age"></div>
+      <div class="form-group"><label>Gender</label><select id="child3Gender"><option>Male</option><option>Female</option></select></div>
+      <div class="form-group"><label>Date of Birth</label><input type="date" id="child3Dob"></div>
+
+    <!-- Parents -->
+    <h2>Parents Information</h2>
+    <div class="form-group"><label>Father’s Complete Name</label><input type="text" id="fatherName" required></div>
+    <div class="form-group"><label>Age</label><input type="number" id="fatherAge"></div>
+    <div class="form-group"><label>Date of Birth</label><input type="date" id="fatherDob"></div>
+    <div class="form-group"><label>Civil Status</label><input type="text" id="fatherStatus"></div>
+    <div class="form-group"><label>Mother’s Maiden Name</label><input type="text" id="motherName" required></div>
+    <div class="form-group"><label>Age</label><input type="number" id="motherAge"></div>
+    <div class="form-group"><label>Date of Birth</label><input type="date" id="motherDob"></div>
+    <div class="form-group"><label>Civil Status</label><input type="text" id="motherStatus"></div>
+
+    <!-- Gov IDs -->
+    <h2>Government Membership Details</h2>
+    <div class="form-group"><label>TIN</label><input type="text" id="tin" required></div>
+    <div class="form-group"><label>SSS Number</label><input type="text" id="sss" required></div>
+    <div class="form-group"><label>Philhealth Number</label><input type="text" id="philhealth" required></div>
+    <div class="form-group"><label>Pag-IBIG Number</label><input type="text" id="pagibig" required></div>
+    <div class="form-group"><label>Existing Loan (SSS/Pag-IBIG)</label><input type="text" id="loan"></div>
+
+    <!-- Emergency -->
+    <h2>In Case of Emergency</h2>
+    <div class="form-group"><label>Contact Person</label><input type="text" id="emergencyContact" required></div>
+    <div class="form-group"><label>Relationship</label><input type="text" id="emergencyRelation" required></div>
+    <div class="form-group"><label>Contact Number</label><input type="text" id="emergencyNumber" required></div>
+
+    <!-- Dependents -->
+    <h2>Dependents for Enrollment (HMO)</h2>
+    <div class="form-group"><label>Dependent 1</label><input type="text" id="dep1"></div>
+    <div class="form-group"><label>Dependent 2</label><input type="text" id="dep2"></div>
+    <div class="form-group"><label>Dependent 3</label><input type="text" id="dep3"></div>
+    <div class="form-group"><label>Dependent 4</label><input type="text" id="dep4"></div>
+
+    <!-- Company Email & Password -->
+    <h2>Account Security</h2>
+    <div class="form-group">
+      <label for="email">Company Email</label>
+      <input type="email" id="email" placeholder="yourname@company.com" required>
+      <div class="error-message" id="emailError">Must be a valid company email</div>
+    </div>
+    <div class="form-group">
+      <label for="password">Create Password</label>
+      <input type="password" id="password" minlength="8" required pattern="(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" placeholder="At least 8 chars w/ uppercase & number">
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" required>
+    </div>
+
+    <button type="submit">Create Account</button>
+  </form>
+  <div class="footer">&copy; 2025 CWGlobal People. All rights reserved.</div>
+</div>
+
+<script>
+const GAS_URL = "https://script.google.com/macros/s/AKfycbzJvPqgmuFV5d2ueGoNt3D29ycol3QG5iiViTObBYuOD5TG_BPJK3bpz9p4JWPLtSvSjg/exec";
+
+document.getElementById('registerForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const email = document.getElementById('email').value.trim();
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirmPassword').value;
+  const emailError = document.getElementById('emailError');
+
+  const allowedDomains = ['cwglobalpeople.com', 'cwglobalpartners.com'];
+  emailError.style.display = 'none';
+
+  const emailDomain = (email.split('@')[1] || '').toLowerCase();
+  if (!allowedDomains.includes(emailDomain)) {
+    emailError.style.display = 'block';
+    return;
+  }
+
+  if (password !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  // Collect all form data
+  const formData = {
+    action: 'signup',
+    email,
+    password,
+
+    // Basic
+    firstName: document.getElementById('firstName')?.value || '',
+    middleName: document.getElementById('middleName')?.value || '',
+    lastName: document.getElementById('lastName')?.value || '',
+    gender: document.getElementById('gender')?.value || '',
+    presentAddress: document.getElementById('presentAddress')?.value || '',
+    permanentAddress: document.getElementById('permanentAddress')?.value || '',
+    birthDate: document.getElementById('birthDate')?.value || '',
+    birthPlace: document.getElementById('birthPlace')?.value || '',
+    citizenship: document.getElementById('citizenship')?.value || '',
+    civilStatus: document.getElementById('civilStatus')?.value || '',
+    landline: document.getElementById('landline')?.value || '',
+    mobile: document.getElementById('mobile')?.value || '',
+    personalEmail: document.getElementById('personalEmail')?.value || '',
+
+    // Spouse (only if married section is shown)
+      firstName: document.getElementById('spouseFirstName')?.value || '',
+      middleName: document.getElementById('spouseMiddleName')?.value || '',
+      lastName: document.getElementById('spouseLastName')?.value || '',
+      age: document.getElementById('spouseAge')?.value || '',
+      birthDate: document.getElementById('spouseBirthDate')?.value || '',
+      hasHealthCard: document.getElementById('spouseHealthCard')?.value || '',
+      healthCardPhoto: document.getElementById('spouseHealthCardPhoto')?.value || ''
+   
+
+    // Children
+    children: [
+      {
+        name: document.getElementById('child1Name')?.value || '',
+        age: document.getElementById('child1Age')?.value || '',
+        gender: document.getElementById('child1Gender')?.value || '',
+        birthDate: document.getElementById('child1BirthDate')?.value || ''
+      },
+      {
+        name: document.getElementById('child2Name')?.value || '',
+        age: document.getElementById('child2Age')?.value || '',
+        gender: document.getElementById('child2Gender')?.value || '',
+        birthDate: document.getElementById('child2BirthDate')?.value || ''
+      },
+      {
+        name: document.getElementById('child3Name')?.value || '',
+        age: document.getElementById('child3Age')?.value || '',
+        gender: document.getElementById('child3Gender')?.value || '',
+        birthDate: document.getElementById('child3BirthDate')?.value || ''
+      }
+    ] : [],
+
+    // Parents
+    father: {
+      name: document.getElementById('fatherName')?.value || '',
+      age: document.getElementById('fatherAge')?.value || '',
+      birthDate: document.getElementById('fatherBirthDate')?.value || '',
+      civilStatus: document.getElementById('fatherCivilStatus')?.value || ''
+    },
+    mother: {
+      name: document.getElementById('motherName')?.value || '',
+      age: document.getElementById('motherAge')?.value || '',
+      birthDate: document.getElementById('motherBirthDate')?.value || '',
+      civilStatus: document.getElementById('motherCivilStatus')?.value || ''
+    },
+
+    // Government IDs
+    tin: document.getElementById('tin')?.value || '',
+    sss: document.getElementById('sss')?.value || '',
+    philhealth: document.getElementById('philhealth')?.value || '',
+    pagibig: document.getElementById('pagibig')?.value || '',
+    existingLoan: document.getElementById('existingLoan')?.value || '',
+
+    // Emergency
+    emergencyContact: {
+      name: document.getElementById('emergencyName')?.value || '',
+      relationship: document.getElementById('emergencyRelationship')?.value || '',
+      number: document.getElementById('emergencyNumber')?.value || ''
+    },
+
+    // Dependents
+    dependents: [
+      document.getElementById('dependent1')?.value || '',
+      document.getElementById('dependent2')?.value || '',
+      document.getElementById('dependent3')?.value || '',
+      document.getElementById('dependent4')?.value || ''
+    ]
+  };
+
+  try {
+    const res = await fetch(GAS_URL, {
+      method: 'POST',
+      body: JSON.stringify(formData)
+    });
+    const data = await res.json();
+
+    if (data.success) {
+      sessionStorage.setItem('authenticated', 'true');
+      sessionStorage.setItem('email', email);
+      window.location.href = '/cwgpeople-prototype/pages/time-tracker/';
+    } else if (data.error === 'exists') {
+      alert('That email is already registered.');
+    } else if (data.error === 'invalid_domain') {
+      emailError.style.display = 'block';
+    } else {
+      alert('Sign-up failed. Please try again.');
+    }
+  } catch (err) {
+    console.error(err);
+    alert('Network/server error.');
+  }
+});
+</script>
