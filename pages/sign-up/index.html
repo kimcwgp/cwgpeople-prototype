@@ -133,8 +133,13 @@
 
             <div class="form-group">
                 <label for="address">Present Address (with Zip Code)</label>
-                <input type="text" id="address" placeholder="Address" >
-              </div>
+                <input type="text" id="address" placeholder="Present Address" >
+            </div>
+
+            <div class="form-group">
+                <label for="permanentAddress">Permanent Address (with Zip Code)</label>
+                <input type="text" id="permanentAddress" placeholder="Permanent Address">
+            </div>
             
             <div class="form-group">
                 <label for="email">Company Email</label>
@@ -173,6 +178,7 @@
       const email = document.getElementById('email').value.trim();
       const name = document.getElementById('myName').value.trim();
       const address = document.getElementById('address').value.trim();
+      const permanentAddress = document.getElementById('permanentAddress').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
       const emailError = document.getElementById('emailError');
@@ -194,7 +200,7 @@
       try {
         const res = await fetch(GAS_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: 'signup', email, name, address, password })
+          body: JSON.stringify({ action: 'signup', email, name, address,permanentAddress, password })
         });
         const data = await res.json();
     
