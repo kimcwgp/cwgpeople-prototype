@@ -246,13 +246,20 @@
     try {
       const res = await fetch(GAS_URL, {
         method: 'POST',
-        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
       });
-      const data = await res.json();
+
+      let data;
+      try {
+        data = await res.json(); // try to parse JSON
+      } catch {
+        console.error('No JSON returned — likely CORS blocked the request.');
+        alert('Network/server error. Cannot reach server.');
+        return;
+      }
   
       if (data.success) {
         sessionStorage.setItem('authenticated', 'true');
