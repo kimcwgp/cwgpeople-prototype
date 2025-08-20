@@ -141,48 +141,6 @@
             </div>
 
             <div class="form-group">
-                <label>Present Address (with Zip Code)</label>
-                <input type="text" id="presentAddress" >
-            </div>
-
-            <div class="form-group">
-                <label>Permanent Address (with Zip Code)</label>
-                <input type="text" id="permanentAddress" >
-            </div>
-
-            <div class="form-group">
-                <label>Place of Birth</label>
-                <input type="text" id="birthPlace" >
-            </div>
-          
-            <div class="form-group">
-                <label>Citizenship</label>
-                <input type="text" id="citizenship" >
-            </div>
-        
-            <div class="form-group">
-                <label>Civil Status</label>
-                <input type="text" id="civilStatus" >
-            </div>
-        
-            <div class="form-group">
-                <label>Landline Number</label>
-                <input type="text" id="landline">
-            </div>
-        
-            <div class="form-group">
-                <label>Mobile Number</label>
-                <input type="text" id="mobile" >
-            </div>
-        
-            <div class="form-group">
-                <label>Personal Email Address</label>
-                <input type="email" id="personalEmail">
-            </div>
-
-
-            
-            <div class="form-group">
                 <label for="email">Company Email</label>
                 <input type="email" id="email" placeholder="yourname@company.com" required>
                 <div class="error-message" id="emailError">Must be a valid company email</div>
@@ -218,14 +176,6 @@
     
       const email = document.getElementById('email').value.trim();
       const name = document.getElementById('myName').value.trim();
-      const presentAddress = document.getElementById('presentAddress').value.trim();
-      const permanentAddress = document.getElementById('permanentAddress').value.trim();
-      const birthPlace= document.getElementById('birthPlace').value.trim();
-      const citizenship = document.getElementById('citizenship').value.trim();
-      const civilStatus = document.getElementById('civilStatus').value.trim();
-      const landline = document.getElementById('landline').value.trim();
-      const mobile = document.getElementById('mobile').value.trim();
-      const personalEmail = document.getElementById('personalEmail').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
       const emailError = document.getElementById('emailError');
@@ -247,7 +197,7 @@
       try {
         const res = await fetch(GAS_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: 'signup', email, name, presentAddress, permanentAddress, birthPlace, citizenship, civilStatus, landline, mobile, personalEmail, password })
+          body: JSON.stringify({ action: 'signup', email, name, password })
         });
         const data = await res.json();
     
