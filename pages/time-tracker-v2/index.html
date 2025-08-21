@@ -86,7 +86,7 @@
 <table id="logTable">
     <thead>
         <tr>
-            <th>#</th>
+            <th>Date</th>
             <th>Name</th>
             <th>Status</th>
             <th>Log In</th>
@@ -144,14 +144,27 @@ function updateLogTable() {
     const logTable = document.getElementById('logTable').getElementsByTagName('tbody')[0];
     logTable.innerHTML = ''; // Clear existing table rows
 
-    logData.forEach((entry, index) => {
+    logData.forEach((entry) => {
         const row = logTable.insertRow(); // Create new row
-        row.insertCell(0).innerText = index + 1; // Row number
+
+        // Show login date instead of row number
+        const dateString = entry.logIn 
+            ? entry.logIn.toLocaleDateString([], { year: 'numeric', month: 'short', day: 'numeric' })
+            : '';
+
+        row.insertCell(0).innerText = dateString; // Date (instead of #)
         row.insertCell(1).innerText = entry.name; // Employee Name
         row.insertCell(2).innerText = entry.status; // Status
-        row.insertCell(3).innerText = entry.logIn ? entry.logIn.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''; // Log In Time
-        row.insertCell(4).innerText = entry.logOut ? entry.logOut.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : ''; // Log Out Time
-        row.insertCell(5).innerText = entry.logIn && entry.logOut ? calculateWorkedHours(entry.logIn, entry.logOut) : 'N/A'; // Total Worked Hours
+        row.insertCell(3).innerText = entry.logIn 
+            ? entry.logIn.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
+            : ''; // Log In Time
+        row.insertCell(4).innerText = entry.logOut 
+            ? entry.logOut.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) 
+            : ''; // Log Out Time
+        row.insertCell(5).innerText = entry.logIn && entry.logOut 
+            ? calculateWorkedHours(entry.logIn, entry.logOut) 
+            : 'N/A'; // Total Worked Hours
     });
 }
+
 </script>

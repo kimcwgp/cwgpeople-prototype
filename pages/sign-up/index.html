@@ -47,6 +47,14 @@
             margin-bottom: 30px;
             font-size: 24px;
         }
+
+        h2 {
+            margin: 20px 0 10px;
+            font-size: 18px;
+            color: #34495e;
+            border-bottom: 1px solid;
+            padding-bottom: 5px;
+        }
         
         .form-group {
             margin-bottom: 20px;
@@ -126,6 +134,7 @@
         <h1>Employee Account Request</h1>
         
         <form id="registerForm">
+            <h2>Basic Information</h2>
             <div class="form-group">
                 <label for="myName">Full Name</label>
                 <input type="text" id="myName" placeholder="Your full name" required>
@@ -145,6 +154,32 @@
                 <label for="birthPlace">Place of Birth</label>
                 <input type="text" id="birthPlace" placeholder="Birth Place">
             </div>
+
+            <div class="form-group">
+                <label for="citizenship">Citizenship</label>
+                <input type="text" id="citizenship" placeholder="Citizenship">
+            </div>
+
+            <div class="form-group">
+                <label for="civilStatus">Civil Status</label>
+                <input type="text" id="civilStatus" placeholder="Single, Married or Widow">
+            </div>
+
+            <div class="form-group">
+                <label for="landline">Landline Number</label>
+                <input type="text" id="landline" placeholder="Landline">
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" id="mobile" placeholder="Mobile Number">
+            </div>
+
+            <div class="form-group">
+                <label for="personalEmail">Personal Email Address</label>
+                <input type="email" id="personalEmail" placeholder="Personal Email">
+            </div>
+
             
             <div class="form-group">
                 <label for="email">Company Email</label>
@@ -185,6 +220,11 @@
       const address = document.getElementById('address').value.trim();
       const permanentAddress = document.getElementById('permanentAddress').value.trim();
       const birthPlace = document.getElementById('birthPlace').value.trim();
+      const citizenship = document.getElementById('citizenship').value.trim();
+      const civilStatus = document.getElementById('civilStatus').value.trim();
+      const landline = document.getElementById('landline').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const personalEmail = document.getElementById('personalEmail').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
       const emailError = document.getElementById('emailError');
@@ -206,7 +246,7 @@
       try {
         const res = await fetch(GAS_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: 'signup', email, name, address, permanentAddress, birthPlace, password })
+          body: JSON.stringify({ action: 'signup', email, name, address, permanentAddress, birthPlace, citizenship, civilStatus, landline, mobile, personalEmail, password })
         });
         const data = await res.json();
     
