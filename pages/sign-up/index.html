@@ -180,7 +180,24 @@
                 <input type="email" id="personalEmail" placeholder="Personal Email">
             </div>
 
-            
+            <h2>Spouse Details</h2> 
+            <div class="form-group">
+                <label for="spouseName">Full Name</label>
+                <input type="text" id="spouseName" placeholder="Spouse Fullname">
+            </div>
+
+            <div class="form-group">
+                <label for="spouseAge">Spouse Age</label>
+                <input type="number" id="spouseAge" placeholder="Spouse Age">
+            </div>
+
+            <div class="form-group">
+                <label for="spouseDob">Date of Birth</label>
+                <input type="date" id="spouseDob" placeholder="Spouse Date of Birth">
+            </div>
+
+            <h2>Children’s Info</h2>
+
             <div class="form-group">
                 <label for="email">Company Email</label>
                 <input type="email" id="email" placeholder="yourname@company.com" required>
@@ -225,6 +242,9 @@
       const landline = document.getElementById('landline').value.trim();
       const mobile = document.getElementById('mobile').value.trim();
       const personalEmail = document.getElementById('personalEmail').value.trim();
+      const spouseName = document.getElementById('spouseName').value.trim();
+      const spouseAge = document.getElementById('spouseAge').value.trim();
+      const spouseDob= document.getElementById('SpouseDob').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
       const emailError = document.getElementById('emailError');
@@ -246,7 +266,7 @@
       try {
         const res = await fetch(GAS_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: 'signup', email, name, address, permanentAddress, birthPlace, citizenship, civilStatus, landline, mobile, personalEmail, password })
+          body: JSON.stringify({ action: 'signup', email, name, address, permanentAddress, birthPlace, citizenship, civilStatus, landline, mobile, personalEmail, spouseName, spouseAge, spouseDob, password })
         });
         const data = await res.json();
     
