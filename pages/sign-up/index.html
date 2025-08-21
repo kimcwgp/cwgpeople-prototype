@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Portal Login</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .login-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            padding: 30px;
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo img {
+            width: 120px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin: 20px 0 10px;
+            font-size: 18px;
+            color: #34495e;
+            border-bottom: 1px solid;
+            padding-bottom: 5px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+            font-weight: 500;
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        
+        input:focus, select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .error-message {
+            color: #e74c3c;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+        }
+        
+        .hint {
+            color: #7f8c8d;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+        
+        .register-link {
+            text-align: center;
+            margin-top: 20px;
+            color: #34495e;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/f26e737b-da2b-4848-a969-181d4019b313.png" alt="Company logo with bold typography and corporate colors" />
+        </div>
+        
+        <h1>Employee Account Request</h1>
+        
+        <form id="registerForm">
+            <h2>Basic Information</h2>
+            <div class="form-group">
+                <label for="myName">Full Name</label>
+                <input type="text" id="myName" placeholder="Your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address">Present Address (with Zip Code)</label>
+                <input type="text" id="address" placeholder="Present Address" >
+            </div>
+
+            <div class="form-group">
+                <label for="permanentAddress">Permanent Address (with Zip Code)</label>
+                <input type="text" id="permanentAddress" placeholder="Permanent Address">
+            </div>
+
+            <div class="form-group">
+                <label for="birthPlace">Place of Birth</label>
+                <input type="text" id="birthPlace" placeholder="Birth Place">
+            </div>
+
+            <div class="form-group">
+                <label for="citizenship">Citizenship</label>
+                <input type="text" id="citizenship" placeholder="Citizenship">
+            </div>
+
+            <div class="form-group">
+                <label for="civilStatus">Civil Status</label>
+                <input type="text" id="civilStatus" placeholder="Single, Married or Widow">
+            </div>
+
+            <div class="form-group">
+                <label for="landline">Landline Number</label>
+                <input type="text" id="landline" placeholder="Landline">
+            </div>
+
+            <div class="form-group">
+                <label for="mobile">Mobile Number</label>
+                <input type="text" id="mobile" placeholder="Mobile Number">
+            </div>
+
+            <div class="form-group">
+                <label for="personalEmail">Personal Email Address</label>
+                <input type="email" id="personalEmail" placeholder="Personal Email">
+            </div>
+
+            <h2>Spouse Details</h2> 
+            <div class="form-group">
+                <label for="spouseName">Full Name</label>
+                <input type="text" id="spouseName" placeholder="Spouse Fullname">
+            </div>
+
+            <div class="form-group">
+                <label for="spouseAge">Spouse Age</label>
+                <input type="number" id="spouseAge" placeholder="Spouse Age">
+            </div>
+
+            <div class="form-group">
+                <label for="spouseDob">Date of Birth</label>
+                <input type="date" id="spouseDob" placeholder="Spouse Date of Birth">
+            </div>
+
+            <div class="form-group>">
+                <label>With Existing Health Card?</label>
+                <select id="spouseHealth">
+                    <option>No</option>
+                    <option>Yes</option>
+                </select>
+            </div>
+
+            <h2>Parents Information</h2>
+
+            <div class="form-group">
+                <label for="fatherName">Father’s Complete Name</label>
+                <input type="text" id="fatherName" placeholder="Father’s Complete Name">
+            </div>
+
+            <div class="form-group">
+                <label for="fatherAge">Age</label>
+                <input type="number" id="fatherAge" placeholder="Age">
+            </div>
+
+            <div class="form-group">
+                <label for="fatherDob">Date of Birth</label>
+                <input type="date" id="fatherDob" placeholder="Date of Birth">
+            </div>
+
+            <div class="form-group">
+                <label for="fatherCivilStatus">Civil Status</label>
+                <input type="text" id="fatherCivilStatus" placeholder="Single, Married or Widow">
+            </div>
+
+            <div class="form-group">
+                <label for="motherName">Mother's Maiden Name</label>
+                <input type="text" id="motherName" placeholder="Mother's Maiden Name">
+            </div>
+
+            <div class="form-group">
+                <label for="motherAge">Age</label>
+                <input type="number" id="motherAge" placeholder="Age">
+            </div>
+
+            <div class="form-group">
+                <label for="motherDob">Date of Birth</label>
+                <input type="date" id="motherDob" placeholder="Date of Birth">
+            </div>
+
+            <div class="form-group">
+                <label for="motherCivilStatus">Civil Status</label>
+                <input type="text" id="motherCivilStatus" placeholder="Single, Married or Widow">
+            </div>
+
+            <h2>Government Membership Details</h2>
+
+            <div class="form-group">
+                <label for="tin">TIN</label>
+                <input type="number" id="tin" placeholder="TIN Number">
+            </div>
+
+            <div class="form-group">
+                <label for="sss">SSS</label>
+                <input type="number" id="sss" placeholder="SSS Number">
+            </div>
+
+            <div class="form-group">
+                <label for="philhealth">Philhealth Number</label>
+                <input type="number" id="philhealth" placeholder="Philhealth Number">
+            </div>
+
+            <div class="form-group">
+                <label for="pagibig">Pag-Ibig</label>
+                <input type="number" id="pagibig" placeholder="Pag-Ibig Number">
+            </div>
+
+            <h2>Dependets for Enrollment (HMO)</h2>
+
+            <div class="form-group">
+                <label for="dep1">Dependent 1</label>
+                <input type="text" id="dep1" placeholder="Dependent">
+            </div>
+
+            <div class="form-group">
+                <label for="dep2">Dependent 2</label>
+                <input type="text" id="dep2" placeholder="Dependent">
+            </div>
+
+            <div class="form-group">
+                <label for="dep3">Dependent 3</label>
+                <input type="text" id="dep3" placeholder="Dependent">
+            </div>
+
+            <div class="form-group">
+                <label for="dep4">Dependent 4</label>
+                <input type="text" id="dep4" placeholder="Dependent">
+            </div>
+
+            <h2>In Case of Emergency</h2>
+
+            <div class="form-group">
+                <label for="emergencyContact">Contact Person</label>
+                <input type="text" id="emergencyContact" placeholder="Contact Person">
+            </div>
+
+            <div class="form-group">
+                <label for="emergencyRelation">Relationship</label>
+                <input type="text" id="emergencyRelation" placeholder="Relationship">
+            </div>
+
+            <div class="form-group">
+                <label for="emergencyNumber">Contact Number</label>
+                <input type="text" id="emergencyNumber" placeholder="Contact Number">
+            </div>
+
+            <h2>Account Sign-up Details</h2>
+
+            <div class="form-group">
+                <label for="email">Company Email</label>
+                <input type="email" id="email" placeholder="yourname@company.com" required>
+                <div class="error-message" id="emailError">Must be a valid company email</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Create Password</label>
+                <input type="password" id="password" minlength="8" required 
+                       pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+                       placeholder="At least 8 characters with uppercase and number">
+                <div class="hint">Must contain uppercase, lowercase, and number</div>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" required 
+                       placeholder="Re-enter your password">
+            </div>
+            
+            <button type="submit">Create Account</button>
+        </form>
+        
+        <div class="footer">
+            &copy; 2025 CWGlobal People. All rights reserved.
+        </div>
+    </div>
+
+    <script>
+    const GAS_URL = "https://script.google.com/macros/s/AKfycbzVT7Nz2VGo7VnQ5ILCSqErjjRaTb9-BcvjWlrg1IwMXvKOSgklfGalu3-yWKglTlZn/exec";
+    
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+    
+      const email = document.getElementById('email').value.trim();
+      const name = document.getElementById('myName').value.trim();
+      const address = document.getElementById('address').value.trim();
+      const permanentAddress = document.getElementById('permanentAddress').value.trim();
+      const birthPlace = document.getElementById('birthPlace').value.trim();
+      const citizenship = document.getElementById('citizenship').value.trim();
+      const civilStatus = document.getElementById('civilStatus').value.trim();
+      const landline = document.getElementById('landline').value.trim();
+      const mobile = document.getElementById('mobile').value.trim();
+      const personalEmail = document.getElementById('personalEmail').value.trim();
+      const spouseName = document.getElementById('spouseName').value.trim();
+      const spouseAge = document.getElementById('spouseAge').value.trim();
+      const spouseDob = document.getElementById('spouseDob').value.trim();
+      const spouseHealth = document.getElementById('spouseHealth').value.trim();
+      const fatherName= document.getElementById('fatherName').value.trim();
+      const fatherAge = document.getElementById('fatherAge').value.trim();
+      const fatherDob = document.getElementById('fatherDob').value.trim();
+      const fatherCivilStatus = document.getElementById('fatherCivilStatus').value.trim();
+      const motherName= document.getElementById('motherName').value.trim();
+      const motherAge = document.getElementById('motherAge').value.trim();
+      const motherDob= document.getElementById('motherDob').value.trim();
+      const motherCivilStatus = document.getElementById('motherCivilStatus').value.trim();
+      const password = document.getElementById('password').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+      const emailError = document.getElementById('emailError');
+    
+      const allowedDomains = ['cwglobalpeople.com', 'cwglobalpartners.com'];
+      emailError.style.display = 'none';
+    
+      const emailDomain = (email.split('@')[1] || '').toLowerCase();
+      if (!allowedDomains.includes(emailDomain)) {
+        emailError.style.display = 'block';
+        return;
+      }
+    
+      if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        return;
+      }
+    
+      try {
+        const res = await fetch(GAS_URL, {
+          method: 'POST',
+          body: JSON.stringify({ action: 'signup', email, name, address, permanentAddress, birthPlace, citizenship, civilStatus, landline, mobile, personalEmail, spouseName, spouseAge, spouseDob, spouseHealth, fatherName, fatherAge, fatherDob, fatherCivilStatus, motherName, motherAge, motherDob, motherCivilStatus, password })
+        });
+        const data = await res.json();
+    
+        if (data.success) {
+          sessionStorage.setItem('authenticated', 'true');
+          sessionStorage.setItem('email', email);
+          window.location.href = '/cwgpeople-prototype/pages/time-tracker-v2/';
+        } else if (data.error === 'exists') {
+          alert('That email is already registered.');
+        } else if (data.error === 'invalid_domain') {
+          emailError.style.display = 'block';
+        } else {
+          alert('Sign-up failed. Please try again.');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network/server error.');
+      }
+    });
+</script>
+
+</body>
+</html>

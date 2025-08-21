@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Time Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Base Styles */
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background-color: #f9fafb;
+            color: #111827;
+            line-height: 1.5;
+        }
+        
+        /* Card Styles */
+        .card {
+            background: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease;
+        }
+        
+        .card:hover {
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+        
+        /* Status Indicator */
+        .status-indicator {
+            width: 0.75rem;
+            height: 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-right: 0.5rem;
+        }
+        
+        .status-in {
+            background-color: #10b981;
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
+            animation: pulse 2s infinite;
+        }
+        
+        .status-out {
+            background-color: #9ca3af;
+        }
+        
+        /* Button Styles */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: all 0.15s ease;
+        }
+        
+        .btn-primary {
+            background-color: #3b82f6;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background-color: #2563eb;
+        }
+        
+        .btn-success {
+            background-color: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background-color: #059669;
+        }
+        
+        .btn-danger {
+            background-color: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background-color: #dc2626;
+        }
+        
+        /* Animations */
+        @keyframes pulse {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 10px rgba(16, 185, 129, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+            }
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.3s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        /* Table Styles */
+        .activity-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+        
+        .activity-table th {
+            background-color: #f3f4f6;
+            color: #6b7280;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            padding: 0.75rem 1rem;
+            text-align: left;
+        }
+        
+        .activity-table td {
+            padding: 1rem 1rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .activity-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Message Styles */
+        .message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .message-success {
+            background-color: #ecfdf5;
+            color: #065f46;
+        }
+        
+        .message-error {
+            background-color: #fee2e2;
+            color: #b91c1c;
+        }
+        
+        /* Time Display */
+        .time-display {
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums;
+        }
+        
+        /* Responsive Adjustments */
+        @media (max-width: 640px) {
+            .btn {
+                padding: 0.5rem 1rem;
+                font-size: 0.875rem;
+            }
+            
+            .card {
+                padding: 1rem;
+            }
+            
+            .activity-table td {
+                padding: 0.5rem;
+                font-size: 0.875rem;
+            }
+        }
+        
+        /* Focus States */
+        button:focus, input:focus {
+            outline: 2px solid transparent;
+            outline-offset: 2px;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.5);
+        }
+    </style>
+</head>
+<body class="min-h-screen p-4 md:p-8">
+    <div class="max-w-lg mx-auto">
+        <!-- Header -->
+        <div class="flex flex-col items-center mb-8 text-center">
+            <div class="w-20 h-20 mb-4 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-400 to-indigo-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+            </div>
+            <h1 class="text-3xl font-bold text-gray-900 mb-2">Time Tracker</h1>
+            <p class="text-gray-600">Record your work hours</p>
+        </div>
+        
+        <!-- Status Card -->
+        <div class="card p-6 mb-6">
+            <h2 class="text-lg font-semibold mb-4">Current Status</h2>
+            <div class="flex items-center mb-2">
+                <span id="status-indicator" class="status-indicator status-out"></span>
+                <span id="status-text" class="font-medium">Not clocked in</span>
+            </div>
+            <p id="last-action-time" class="text-sm text-gray-500 time-display"></p>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="grid grid-cols-2 gap-4 mb-8">
+            <button id="clock-in-btn" class="btn btn-success">
+                Clock In
+            </button>
+            <button id="clock-out-btn" class="btn btn-primary" disabled>
+                Clock Out
+            </button>
+        </div>
+        
+        <!-- Message Area -->
+        <div id="message-area" class="message hidden"></div>
+        
+        <!-- Activity Table -->
+        <div class="card p-6">
+            <h2 class="text-lg font-semibold mb-4">Today's Activity</h2>
+            <div class="overflow-x-auto">
+                <table class="activity-table">
+                    <thead>
+                        <tr>
+                            <th>Time</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="activity-table-body">
+                        <tr>
+                            <td colspan="2" class="text-center text-gray-500 py-4">No activity recorded today</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+if (!sessionStorage.getItem('authenticated')) {
+              window.location.replace('/cwgpeople-prototype/pages/time-tracker/'); // or your login page
+            }
+
+        // Configuration - Replace with your actual GAS URL
+        const GAS_URL = "https://script.google.com/macros/s/AKfycbwxBcSIFY1qXWCvtS5zhsxdKofV9H8g88RPt4gXEuzHMrwlzp8VdsAtAlgfqCpIMmMHXQ/exec";
+        
+        // DOM Elements
+        const clockInBtn = document.getElementById('clock-in-btn');
+        const clockOutBtn = document.getElementById('clock-out-btn');
+        const statusIndicator = document.getElementById('status-indicator');
+        const statusText = document.getElementById('status-text');
+        const lastActionTime = document.getElementById('last-action-time');
+        const activityTableBody = document.getElementById('activity-table-body');
+        const messageArea = document.getElementById('message-area');
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            checkStatus(); // Check current status when page loads
+            
+            // Event Listeners
+            clockInBtn.addEventListener('click', () => handleClockAction('in'));
+            clockOutBtn.addEventListener('click', () => handleClockAction('out'));
+        });
+
+        // Handle clock in/out actions
+        async function handleClockAction(action) {
+            showMessage('', ''); // Clear any messages
+            
+            // Disable both buttons during processing
+            clockInBtn.disabled = true;
+            clockOutBtn.disabled = true;
+            
+            // Add loading spinners
+            const loadingHTML = `
+                <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                Clocking ${action}...
+            `;
+            
+            if (action === 'in') {
+                clockInBtn.innerHTML = loadingHTML;
+            } else {
+                clockOutBtn.innerHTML = loadingHTML;
+            }
+
+            try {
+                // Make API call to GAS
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: `clock_${action}`,
+                        email: sessionStorage.getItem('email')
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateStatus(data.newStatus, data.timestamp);
+                    // Instead of updating table with missing data, reload full status
+                    await checkStatus();
+                    showMessage(`Successfully clocked ${action} at ${formatTime(data.timestamp)}`, 'success');
+                } else {
+                    throw new Error(data.error || data.message || `Failed to clock ${action}`);
+                }
+            } catch (error) {
+                console.error(`Error clocking ${action}:`, error);
+                showMessage(error.message || `Error clocking ${action}. Please try again.`, 'error');
+                checkStatus(); // Refresh status to ensure UI matches actual state
+            } finally {
+                resetButtonStates();
+            }
+        }
+
+        // Check current status
+        async function checkStatus() {
+            try {
+                const response = await fetch(GAS_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        action: 'check_status',
+                        email: sessionStorage.getItem('email')
+                    })
+                });
+
+                const data = await response.json();
+                
+                if (data.success) {
+                    updateStatus(data.currentStatus, data.lastActionTime);
+                    updateActivityTable(data.activity);
+                } else {
+                    throw new Error(data.message || 'Failed to check status');
+                }
+            } catch (error) {
+                console.error('Error checking status:', error);
+                showMessage('Could not load current status', 'error');
+            }
+        }
+
+        // Update status UI
+        function updateStatus(status, timestamp) {
+            if (status === 'in') {
+                statusIndicator.className = 'status-indicator status-in';
+                statusText.textContent = 'Clocked in';
+                clockInBtn.disabled = true;
+                clockOutBtn.disabled = false;
+            } else {
+                statusIndicator.className = 'status-indicator status-out';
+                statusText.textContent = 'Not clocked in';
+                clockInBtn.disabled = false;
+                clockOutBtn.disabled = true;
+            }
+
+            if (timestamp) {
+                lastActionTime.textContent = `Last action: ${formatTime(timestamp)}`;
+            }
+        }
+
+        // Update activity table
+        function updateActivityTable(activity = []) {
+            if (activity.length === 0) {
+                activityTableBody.innerHTML = `
+                    <tr>
+                        <td colspan="2" class="text-center text-gray-500 py-4">No activity recorded today</td>
+                    </tr>
+                `;
+                return;
+            }
+
+            activityTableBody.innerHTML = activity.map(item => `
+                <tr class="fade-in">
+                    <td class="time-display">${formatTime(item.timestamp)}</td>
+                    <td class="${item.action === 'in' ? 'text-green-600 font-medium' : 'text-blue-600 font-medium'}">
+                        Clock ${item.action}
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        // Show message to user
+        function showMessage(message, type = '') {
+            if (!message) {
+                messageArea.classList.add('hidden');
+                return;
+            }
+
+            messageArea.textContent = message;
+            messageArea.classList.remove('hidden');
+            
+            // Clear any existing classes
+            messageArea.className = 'message';
+            
+            // Add appropriate class based on type
+            if (type === 'error') {
+                messageArea.classList.add('message-error');
+            } else if (type === 'success') {
+                messageArea.classList.add('message-success');
+            }
+            
+            // Auto-hide success messages after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    messageArea.classList.add('hidden');
+                }, 5000);
+            }
+        }
+
+        // Format timestamp
+        function formatTime(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', hour12: true });
+        }
+
+        // Reset button states after action
+        function resetButtonStates() {
+            clockInBtn.disabled = statusIndicator.classList.contains('status-in');
+            clockOutBtn.disabled = !clockInBtn.disabled;
+            
+            // Reset button text
+            clockInBtn.innerHTML = 'Clock In';
+            clockOutBtn.innerHTML = 'Clock Out';
+        }
+    </script>
+</body>
+</html>
