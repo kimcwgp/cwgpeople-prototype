@@ -67,7 +67,7 @@
             font-weight: 500;
         }
         
-        input {
+        input, select {
             width: 100%;
             padding: 12px 15px;
             border: 1px solid #ddd;
@@ -76,7 +76,7 @@
             transition: border-color 0.3s;
         }
         
-        input:focus {
+        input:focus, select:focus {
             outline: none;
             border-color: #3498db;
         }
@@ -196,7 +196,56 @@
                 <input type="date" id="spouseDob" placeholder="Spouse Date of Birth">
             </div>
 
-            <h2>Children’s Info</h2>
+            <div class="form-group>">
+                <label>With Existing Health Card?</label>
+                <select id="spouseHealth">
+                    <option>No</option>
+                    <option>Yes</option>
+                </select>
+            </div>
+
+            <h2>Parents Information</h2>
+
+            <div class="form-group">
+                <label for="fatherName">Father’s Complete Name</label>
+                <input type="text" id="fatherName" placeholder="Father’s Complete Name">
+            </div>
+
+            <div class="form-group">
+                <label for="fatherAge">Age</label>
+                <input type="number" id="fatherAge" placeholder="Age">
+            </div>
+
+            <div class="form-group">
+                <label for="fatherDob">Date of Birth</label>
+                <input type="date" id="fatherDob" placeholder="Date of Birth">
+            </div>
+
+            <div class="form-group">
+                <label for="fatherCivilStatus">Civil Status</label>
+                <input type="text" id="fatherCivilStatus" placeholder="Single, Married or Widow">
+            </div>
+
+            <div class="form-group">
+                <label for="motherName">Mother's Maiden Name</label>
+                <input type="text" id="motherName" placeholder="Mother's Maiden Name">
+            </div>
+
+            <div class="form-group">
+                <label for="motherAge">Age</label>
+                <input type="number" id="motherAge" placeholder="Age">
+            </div>
+
+            <div class="form-group">
+                <label for="motherDob">Date of Birth</label>
+                <input type="date" id="motherDob" placeholder="Date of Birth">
+            </div>
+
+            <div class="form-group">
+                <label for="motherCivilStatus">Civil Status</label>
+                <input type="text" id="motherCivilStatus" placeholder="Single, Married or Widow">
+            </div>
+
 
             <div class="form-group">
                 <label for="email">Company Email</label>
@@ -245,6 +294,15 @@
       const spouseName = document.getElementById('spouseName').value.trim();
       const spouseAge = document.getElementById('spouseAge').value.trim();
       const spouseDob = document.getElementById('spouseDob').value.trim();
+      const spouseHealth = document.getElementById('spouseHealth').value.trim();
+      const fatherName= document.getElementById('fatherName').value.trim();
+      const fatherAge = document.getElementById('fatherAge').value.trim();
+      const fatherDob = document.getElementById('fatherDob').value.trim();
+      const fatherCivilStatus = document.getElementById('fatherCivilStatus').value.trim();
+      const motherName= document.getElementById('motherName').value.trim();
+      const motherAge = document.getElementById('motherAge').value.trim();
+      const motherDob= document.getElementById('motherDob').value.trim();
+      const motherCivilStatus = document.getElementById('motherCivilStatus').value.trim();
       const password = document.getElementById('password').value;
       const confirmPassword = document.getElementById('confirmPassword').value;
       const emailError = document.getElementById('emailError');
@@ -266,7 +324,7 @@
       try {
         const res = await fetch(GAS_URL, {
           method: 'POST',
-          body: JSON.stringify({ action: 'signup', email, name, address, permanentAddress, birthPlace, citizenship, civilStatus, landline, mobile, personalEmail, spouseName, spouseAge, spouseDob, password })
+          body: JSON.stringify({ action: 'signup', email, name, address, permanentAddress, birthPlace, citizenship, civilStatus, landline, mobile, personalEmail, spouseName, spouseAge, spouseDob, spouseHealth, fatherName, fatherAge, fatherDob, fatherCivilStatus, motherName, motherAge, motherDob, motherCivilStatus, password })
         });
         const data = await res.json();
     
