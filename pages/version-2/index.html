@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Strategic Workforce & Consulting Solutions</title>
+
+<style>
+
+/* ================= GLOBAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Segoe UI', Arial, sans-serif;
+}
+
+body{
+    background:#f4f6fa;
+    color:#1c1f2f;
+    line-height:1.6;
+}
+
+section{
+    padding:100px 8%;
+}
+
+h1,h2,h3,h4{
+    font-weight:600;
+}
+
+/* ================= NAV ================= */
+
+header{
+    position:fixed;
+    width:100%;
+    background:#0b1c33;
+    padding:20px 8%;
+    z-index:999;
+}
+
+nav{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.logo{
+    color:white;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+nav ul{
+    display:flex;
+    list-style:none;
+}
+
+nav ul li{
+    margin-left:30px;
+}
+
+nav ul li a{
+    color:white;
+    text-decoration:none;
+    font-size:14px;
+}
+
+nav ul li a:hover{
+    color:#c9a227;
+}
+
+/* ================= HERO ================= */
+
+.hero{
+    background:linear-gradient(rgba(11,28,51,0.9),rgba(11,28,51,0.9)),
+    url('https://images.unsplash.com/photo-1507679799987-c73779587ccf');
+    background-size:cover;
+    background-position:center;
+    color:white;
+    padding:220px 8% 160px;
+}
+
+.hero h1{
+    font-size:48px;
+    max-width:800px;
+    margin-bottom:25px;
+}
+
+.hero p{
+    font-size:18px;
+    max-width:650px;
+    margin-bottom:40px;
+    color:#d8d8d8;
+}
+
+.btn{
+    background:#c9a227;
+    color:#0b1c33;
+    padding:14px 28px;
+    border:none;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#b8901f;
+}
+
+/* ================= ENGAGEMENT MODELS ================= */
+
+.models{
+    background:white;
+}
+
+.models h2{
+    text-align:center;
+    margin-bottom:60px;
+}
+
+.model-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:40px;
+}
+
+.model-card{
+    background:#f9fafc;
+    padding:40px;
+    border-left:5px solid #c9a227;
+    box-shadow:0 8px 25px rgba(0,0,0,0.05);
+}
+
+.model-card h3{
+    margin-bottom:15px;
+}
+
+/* ================= INDUSTRIES ================= */
+
+.industries{
+    background:#f0f3f9;
+    text-align:center;
+}
+
+.industry-list{
+    margin-top:30px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+}
+
+.industry-item{
+    background:white;
+    padding:15px 25px;
+    border-radius:30px;
+    box-shadow:0 3px 10px rgba(0,0,0,0.05);
+}
+
+/* ================= WHY US ================= */
+
+.why{
+    background:white;
+}
+
+.why h2{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.why-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:30px;
+}
+
+.why-card{
+    background:#f9fafc;
+    padding:30px;
+}
+
+/* ================= PROCESS ================= */
+
+.process{
+    background:#0b1c33;
+    color:white;
+    text-align:center;
+}
+
+.process h2{
+    margin-bottom:50px;
+}
+
+.process-steps{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:40px;
+}
+
+.step{
+    max-width:220px;
+}
+
+.step h4{
+    color:#c9a227;
+    margin-bottom:10px;
+}
+
+/* ================= CONTACT ================= */
+
+.contact{
+    background:white;
+    text-align:center;
+}
+
+form{
+    max-width:600px;
+    margin:30px auto 0;
+    display:flex;
+    flex-direction:column;
+}
+
+input,textarea{
+    padding:14px;
+    margin-bottom:15px;
+    border:1px solid #ccc;
+}
+
+button{
+    padding:14px;
+    background:#0b1c33;
+    color:white;
+    border:none;
+    cursor:pointer;
+}
+
+/* ================= FOOTER ================= */
+
+footer{
+    background:#0b1c33;
+    color:white;
+    text-align:center;
+    padding:25px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+    .hero h1{
+        font-size:32px;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<nav>
+<div class="logo">STRATEGIC WORKFORCE PARTNERS</div>
+<ul>
+<li><a href="#models">Engagement Models</a></li>
+<li><a href="#industries">Industries</a></li>
+<li><a href="#why">Why Us</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</nav>
+</header>
+
+<section class="hero">
+<h1>Enterprise Workforce & Consulting Solutions Built for Scalable Growth</h1>
+<p>We provide embedded professionals and on-demand consulting specialists to support operational excellence, technology transformation, and customer engagement initiatives.</p>
+<button class="btn" onclick="scrollToContact()">Request Executive Consultation</button>
+</section>
+
+<section id="models" class="models">
+<h2>Our Engagement Models</h2>
+<div class="model-grid">
+
+<div class="model-card">
+<h3>Dedicated Embedded Talent</h3>
+<p>Full-time professionals integrated directly into your organization, aligned with your KPIs, workflows, and culture.</p>
+<p><strong>Best For:</strong> Long-term scaling, operational support, remote teams.</p>
+</div>
+
+<div class="model-card">
+<h3>Shared Consulting Specialists</h3>
+<p>On-demand experts deployed across multiple clients on an hourly basis — providing strategic advisory, implementation support, and specialized consulting.</p>
+<p><strong>Best For:</strong> Short-term projects, advisory services, technical consulting.</p>
+</div>
+
+</div>
+</section>
+
+<section id="industries" class="industries">
+<h2>Industries We Support</h2>
+<div class="industry-list">
+<div class="industry-item">Technology & SaaS</div>
+<div class="industry-item">E-commerce</div>
+<div class="industry-item">Financial Services</div>
+<div class="industry-item">Healthcare Support</div>
+<div class="industry-item">Professional Services</div>
+</div>
+</section>
+
+<section id="why" class="why">
+<h2>Why Enterprises Partner With Us</h2>
+<div class="why-grid">
+<div class="why-card">
+<h4>Strategic Workforce Planning</h4>
+<p>We align talent strategy with business objectives.</p>
+</div>
+<div class="why-card">
+<h4>Performance Accountability</h4>
+<p>Defined KPIs, reporting, and measurable impact.</p>
+</div>
+<div class="why-card">
+<h4>Flexible Cost Structure</h4>
+<p>Dedicated monthly or hourly consulting engagement options.</p>
+</div>
+<div class="why-card">
+<h4>Scalable Delivery</h4>
+<p>Rapid expansion or contraction based on demand.</p>
+</div>
+</div>
+</section>
+
+<section class="process">
+<h2>Our Delivery Framework</h2>
+<div class="process-steps">
+<div class="step">
+<h4>01. Discovery</h4>
+<p>Understanding objectives and workforce requirements.</p>
+</div>
+<div class="step">
+<h4>02. Talent Allocation</h4>
+<p>Assigning embedded or consulting professionals.</p>
+</div>
+<div class="step">
+<h4>03. Integration</h4>
+<p>Seamless onboarding and workflow alignment.</p>
+</div>
+<div class="step">
+<h4>04. Optimization</h4>
+<p>Ongoing performance monitoring and improvement.</p>
+</div>
+</div>
+</section>
+
+<section id="contact" class="contact">
+<h2>Partner With Our Executive Team</h2>
+<form id="contactForm">
+<input type="text" placeholder="Full Name" required>
+<input type="email" placeholder="Corporate Email" required>
+<textarea rows="5" placeholder="Describe your workforce or consulting needs"></textarea>
+<button type="submit">Submit Inquiry</button>
+</form>
+</section>
+
+<footer>
+© 2026 Strategic Workforce Partners | Enterprise Talent & Consulting Solutions
+</footer>
+
+<script>
+function scrollToContact(){
+document.getElementById("contact").scrollIntoView({behavior:"smooth"});
+}
+
+document.getElementById("contactForm").addEventListener("submit",function(e){
+e.preventDefault();
+alert("Thank you. Our executive team will contact you shortly.");
+this.reset();
+});
+</script>
+
+</body>
+</html>
